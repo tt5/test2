@@ -1,0 +1,17 @@
+{
+  "name": "node-starter",
+  "version": "0.0.0",
+  "scripts": {},
+  "dependencies": {
+    "jshon": "^0.0.20121031",
+    "jstransformer-markdown-it": "^2.1.0",
+    "pug": "^3.0.2",
+    "pug-cli": "*",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "vite": "^2.5.6"
+  },
+  "devDependencies": {
+    "sass": "^1.39.2"
+  }
+}

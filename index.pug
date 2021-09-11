@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+ head
+  meta(charset="utf-8")
+  link(rel="stylesheet" href="index.css")
+  title My Title
+body 
+ include:markdown-it markdown/base.md
+ .result
+ #app
+ script(type="module" src="/src/entry.jsx")
+ include content.pug
+ - var n = 1;
+ while n <= 2
+  h2
+   span.chapterNumber= n
+   |Hello1
+  p= lorem
+  - n++
