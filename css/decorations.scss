@@ -1,0 +1,15 @@
+@import 'colors', 'sizes';
+
+#pageNumbers {
+  margin-bottom: -2rem;
+  padding-left: 1rem;
+}
+
+button {
+  box-sizing: content-box;
+  height: $medium;
+  background-color: $color;
+  font-weight: 800;
+  border: none;
+  border-bottom: $color-light solid 3px;
+}

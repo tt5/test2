@@ -1,0 +1,128 @@
+@import 'colors', 'sizes';
+
+#center {
+  display: flex;
+  max-width: 30rem;
+  overflow: hidden;
+  grid-area: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  border-top: $color-bg solid $small;
+  border-right: $color-bg solid $small;
+//  background-color: white;
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: auto 1fr 3fr 2fr;
+  grid-template-rows: $extraLarge calc(100vh - #{$extraLarge} - #{$large}) $large;
+    grid-template-areas: 
+    "title top top right"
+    "left empty center right"
+    "bottom bottom bottom right ";
+}
+
+#border-right {
+  grid-area: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-top: $color-bg solid $extraLarge;
+  border-bottom: $color-bg solid $large;
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+#top {
+  grid-area: top;
+  background-color: $color-bg;
+  box-sizing: border-box;
+  border-bottom: $color solid $small;
+  display: flex;
+  align-items: flex-start;
+  padding-top: $medium;
+  justify-content: flex-end;
+  gap: $small;
+  div {
+    width: $large;
+    background-color: $color-1;
+    font-weight: 800;
+  }
+}
+
+#border-left {
+  display: flex;
+  grid-area: left;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 20rem;
+  background-color: $color-bg;
+  border-right: $color-bg solid $medium;
+  border-left: $color-bg solid $small;
+  border-top: $color-bg solid $small;
+}
+
+#bottom {
+  grid-area: bottom;
+  background-color: $color-dark;
+  box-sizing: border-box;
+  border-top: 0.3rem solid $color-light;
+}
+
+#title-content {
+  @include text-crop;
+  align-self: flex-start;
+  margin: 0;
+  font-size: $small;
+  font-weight: 700;
+}
+
+#title {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: $color-bg;
+  border-left: $color-bg solid $small;
+  
+}
+
+.aside {
+  display: inline-block;
+  position: fixed;
+  right: calc((100vw - 21rem) / 3);
+  width: 0rem;
+  z-index: -1;
+}
+
+#bottom-content {
+ display: flex; 
+ justify-content: flex-end;
+ gap: 1rem;
+ padding-right: $small;
+}
+
+.picture {
+  position: fixed;
+  bottom: $large;
+  left: 1rem;
+}
+
+#picContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+#svgcontainer2 {
+  position: fixed;
+  height: $extraLarge;
+  display: flex;
+  flex-direction: column;
+  div {
+  }
+}
+#line-over {
+  height: $small;
+}
+#line-under {
+  height: $medium;
+}

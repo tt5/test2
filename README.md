@@ -1,1 +1,1 @@
-vite serve
+vite preview

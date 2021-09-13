@@ -1,12 +1,115 @@
-$small: 1rem;
 
-h1 {
-  color: red;
+@import 'colors';
+@import 'textcrop';
+@import 'sizes';
+
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+
+
+html {
+  background-color: $color-bg;
 }
 
-.chapterNumber {
-  color: red;
-  box-sizing: border-box;
-  border: solid;
-  padding-right: 1rem;
+body {
+  font-size: 100%;
+  font-family: "Lato";
+  margin: 0;
+}
+
+h2 {
+  @include text-crop;
+  align-self: flex-start;
+  margin: 0;
+  font-size: $large;
+  font-weight: bold;
+//  border: brown solid 1px;
+  margin-left: -2px;
+  
+  &::before {
+//    background: white;
+    width: 0.5rem;
+    height: 0rem;
+  }
+  &::after {
+//    background: white;
+    width: 0.5rem;
+    height: 0rem;
+  }
+}
+
+h3 {
+  @include text-crop;
+  align-self: flex-start;
+  margin: 0;
+  font-size: $medium;
+  font-weight: 700;
+//  border: brown solid 1px;
+  
+  &::before {
+//    background: white;
+    width: 0.5rem;
+    height: 3rem;
+  }
+  &::after {
+//    background: white;
+    width: 0.5rem;
+    height: 1.5rem;
+  }
+}
+
+#border-left h3 {
+  @include text-crop;
+  align-self: flex-start;
+  margin: 0;
+  font-size: $medium;
+  font-weight: 700;
+//  border: brown solid 1px;
+  
+  &::before {
+//    background: white;
+    width: 0.5rem;
+    height: 0rem;
+  }
+  &::after {
+//    background: white;
+    width: 0.5rem;
+    height: 1.5rem;
+  }
+}
+
+h4 {
+  @include text-crop;
+  align-self: flex-start;
+  margin: 0;
+  font-size: $small;
+  font-weight: 700;
+//  border: brown solid 1px;
+  
+  &::before {
+//    background: white;
+    width: 0.5rem;
+    height: 2rem;
+  }
+  &::after {
+//    background: white;
+    width: 0.5rem;
+    height: 1rem;
+  }
+}
+
+p {
+  @include text-crop(1.35);
+  margin: 0;
+  hyphens: true;
+  padding-bottom: $small;
+//  border: brown solid 1px;
+}
+
+svg {
+  background-color: lightgray;
+}
+
+#a0 {
+  width: 40px;
+  height: 30px;
 }
