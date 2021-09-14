@@ -1,0 +1,14 @@
+#svgcontainer2 {
+  position: fixed;
+  height: $extraLarge;
+  display: flex;
+  flex-direction: column;
+  div {
+  }
+}
+#line-over {
+  height: $small;
+}
+#line-under {
+  height: $medium;
+}

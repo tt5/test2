@@ -1,6 +1,10 @@
 
 //import { myfunc } from './js/myd3.js'
 //myfunc();
+//import { sevenMinuteTabs } from './js/sevenMinuteTabs.js'
+//sevenMinuteTabs();
+import { myline } from './js/myline.js'
+myline();
 import HyperPug from 'hyperpug'
 const hp = new HyperPug()
 
@@ -11,7 +15,20 @@ document.getElementById(elementId).innerHTML = hp.parse(content)
 }
 
 setContent("title-content", "h2 Hello1")
-setContent("top",`
-#topic A
-#settings B
-`)
+
+const myfetch = () => (fetch('/markdown/html/page2.html').then(function (response) {
+	// The API call was successful!
+	return response.text();
+}).then(function (html) {
+
+	// Convert the HTML string into a document object
+	//var parser = new DOMParser();
+	//var doc = parser.parseFromString(html, 'text/html');
+  document.getElementById("center").innerHTML = html;
+
+}).catch(function (err) {
+	// There was an error
+	console.warn('Something went wrong.', err);
+}))
+
+document.getElementById("page2").addEventListener("click", myfetch)

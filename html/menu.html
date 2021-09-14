@@ -1,0 +1,29 @@
+<div
+  id="topics"
+  x-data="{ open: false }"
+  @mouseleave="open = false"
+>
+  <button id="a-settings" @mouseover="open = true">web</button>
+  <div x-show="open">
+  <button id="page2">page2</button>
+    <button>media</button>
+    <button>progr</button>
+    <button>math</button>
+    <button>lang</button>
+    <button>techne</button>
+    <button>gw</button>
+    <button>m4ddata</button>
+  </div>
+</div>
+
+<div
+  id="settings"
+  x-data="{ open: false }"
+  @mouseleave="open = false"
+>
+  <button id="b-settings" @mouseover="open = true">Normal</button>
+  <div x-show="open">
+    <button>Focus</button>
+    <button>Fullscreen</button>
+  </div>
+</div>

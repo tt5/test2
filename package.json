@@ -5,6 +5,7 @@
   "dependencies": {
     "alpinejs": "^3.3.3",
     "d3": "^7.0.1",
+    "d3-interpolate-path": "^2.2.3",
     "estrella": "^1.4.1",
     "hyperpug": "^1.5.3",
     "jshon": "^0.0.20121031",
