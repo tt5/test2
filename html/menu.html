@@ -1,29 +1,36 @@
+
 <div
   id="topics"
   x-data="{ open: false }"
   @mouseleave="open = false"
 >
-  <button id="a-settings" @mouseover="open = true">web</button>
+  <button id="a-settings" @mouseover="open = true" @click="open = ! open; myfetch('/html/topics/start.html');">start</button>
   <div x-show="open">
-  <button id="page2">page2</button>
-    <button>media</button>
-    <button>progr</button>
-    <button>math</button>
-    <button>lang</button>
-    <button>techne</button>
-    <button>gw</button>
-    <button>m4ddata</button>
+    <button id="menu-web" @click="open = false; myfetch('/html/topics/web.html');">web</button>
+    <button id="menu-progr" @click="open = false; myfetch('/html/topics/progr.html');">progr</button>
   </div>
 </div>
 
 <div
   id="settings"
-  x-data="{ open: false }"
+  x-data="{ open: false,
+    left: false,
+    setLeft: (a) => {
+
+      if (a == true) {
+      document.getElementById('center').classList.add('settings-left')
+    } else {
+      document.getElementById('center').classList.remove('settings-left')
+    }
+  },
+    setNormal: () => {
+      document.getElementById('center').classList.remove('settings-left')
+    }
+  }"
   @mouseleave="open = false"
 >
-  <button id="b-settings" @mouseover="open = true">Normal</button>
+  <button id="b-settings" @mouseover="open = true" @click="setNormal();">normal</button>
   <div x-show="open">
-    <button>Focus</button>
-    <button>Fullscreen</button>
+    <button id="settings-left" @click="left = ! left; setLeft(left);">left</button>
   </div>
 </div>

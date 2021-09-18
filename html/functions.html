@@ -1,0 +1,128 @@
+<script>
+  function myfetch(file) {
+    fetch(file)
+      .then(function (response) {
+        return response.text();
+      })
+      .then(function (html) {
+        //       html = "<div class='page-content'>" + html + "</div>"
+
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(html, 'text/html');
+
+        var elements1 = doc.querySelectorAll('*');
+
+        var pageContent =
+          elements1[0].querySelectorAll('.page-content')[0].innerHTML;
+
+        document.getElementById('center').innerHTML = pageContent;
+
+        var container = document.getElementById('center');
+        var elements = container.querySelectorAll('h1, h2, h3, p, pre');
+
+        var bottom = container.getBoundingClientRect().bottom;
+/*
+        for (let i = 0; i < elements.length; i++) {
+          if (
+            elements[i].getBoundingClientRect().bottom >
+            document.body.clientHeight
+          ) {
+            let diff =
+              elements[i].getBoundingClientRect().top -
+              document.body.clientHeight;
+            diff = Math.abs(diff.toFixed(0));
+
+            let flag = false;
+            let bufferStr = '';
+
+            for (let k = 0; k <= diff; k = k + 10) {
+              bufferStr += `<div class='buffer-slice'>${k}</div>`;
+              flag = true;
+            }
+
+            if (flag) {
+              let buffer = document.createElement('div');
+              buffer.innerHTML = bufferStr;
+              elements[i - 1].appendChild(buffer);
+            }
+            break;
+          }
+        }
+*/
+        let soffset3 = document.getElementById("center").offsetHeight;
+        let pageBuffer = document.querySelector(".buffer-page")
+        let bottom2 = pageBuffer.getBoundingClientRect().y
+
+
+
+        for (let h = 0; h < 5; h++) {
+ 
+
+
+        if (bottom2 < soffset3 ) {break} 
+        for (let i = 0; i < elements.length; i++) {
+          if (
+            elements[i].getBoundingClientRect().bottom >
+            (document.body.clientHeight + (h ) * soffset3)
+          ) {
+            let diff =
+              elements[i].getBoundingClientRect().top -
+              (document.body.clientHeight + (h ) * soffset3);
+            diff = Math.abs(diff.toFixed(0));
+
+            let flag = false;
+            let bufferStr = '';
+
+            for (let k = 0; k <= diff; k = k + 10) {
+              bufferStr += `<div class='buffer-slice'></div>`;
+              flag = true;
+            }
+
+            if (flag) {
+              let buffer = document.createElement('div');
+              buffer.innerHTML = bufferStr;
+              elements[i - 1].appendChild(buffer);
+            }
+            break;
+          }
+        }
+
+
+var mycenter = document.getElementById("center")
+    renderMathInElement(mycenter, {
+      delimiters: [
+        {
+          left: '$$',
+          right: '$$',
+          display: true,
+        },
+        {
+          left: '$',
+          right: '$',
+          display: false,
+        },
+      ],
+    });
+
+
+
+
+
+
+      }
+
+
+      soffset3 = document.getElementById("center").offsetHeight;
+pageBuffer = document.querySelector(".buffer-page")
+         bottom2 = pageBuffer.getBoundingClientRect().y
+
+         var sheight2 = document.getElementById("center").scrollHeight - document.querySelector(".buffer-page").clientHeight;
+
+        var pageNumberTotal2 = +(sheight2 / soffset3).toFixed(0) + 1
+        document.getElementById("pageNumberTotal").innerHTML=`${pageNumberTotal2}`
+        document.getElementById("pageNumberCounter").innerHTML="1"
+
+
+      });
+  }
+</script>

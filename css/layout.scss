@@ -4,12 +4,16 @@
   display: flex;
   max-width: 30rem;
   overflow: hidden;
-  grid-area: center;
+  //grid-area: center;
+  grid-column: 3 / span 2;
+  grid-row: 2 / 4;
   flex-direction: column;
   box-sizing: border-box;
-  border-top: $color-bg solid $small;
+  //border-top: transparent solid $small;
   border-right: $color-bg solid $small;
+  padding-left: 1rem;
 //  background-color: white;
+  z-index: 2;
 }
 
 #grid {
@@ -19,7 +23,7 @@
     grid-template-areas: 
     "title top top right"
     "left empty center right"
-    "bottom bottom bottom right ";
+    "bottom bottom center right ";
 }
 
 #border-right {
@@ -37,7 +41,7 @@
   grid-area: top;
   background-color: $color-bg;
   box-sizing: border-box;
-  border-bottom: $color solid $small;
+  border-bottom: $color-bg solid $small;
   display: flex;
   align-items: flex-start;
   padding-top: $medium;
@@ -55,7 +59,7 @@
   grid-area: left;
   flex-direction: column;
   box-sizing: border-box;
-  width: 20rem;
+  width: 10rem; //20rem
   background-color: $color-bg;
   border-right: $color-bg solid $medium;
   border-left: $color-bg solid $small;
@@ -63,10 +67,15 @@
 }
 
 #bottom {
-  grid-area: bottom;
-  background-color: $color-dark;
+  //grid-area: bottom;
+  grid-column: 1 / span 2;
+  grid-row: 3 / 4;
+  //background-color: $color-dark;
+  //background-color: none;
   box-sizing: border-box;
   border-top: 0.3rem solid $color-light;
+  //border-top: 0.3rem solid transparent;
+  z-index: 1;
 }
 
 #title-content {
@@ -96,9 +105,10 @@
 
 #bottom-content {
  display: flex; 
- justify-content: flex-end;
+ justify-content: flex-start;
  gap: 1rem;
  padding-right: $small;
+ padding-left: $small;
 }
 
 .picture {

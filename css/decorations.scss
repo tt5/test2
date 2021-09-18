@@ -3,11 +3,13 @@
 #pageNumbers {
   margin-bottom: -2rem;
   padding-left: 1rem;
+  z-index: 999;
 }
 
 button {
   box-sizing: content-box;
   height: $medium;
+  min-width: $medium;
   background-color: $color;
   font-weight: 800;
   border: none;

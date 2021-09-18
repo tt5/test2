@@ -1,0 +1,17 @@
+@import 'base',
+        'grayscale',
+        'layout',
+        'decorations',
+        'menu',
+        'line',
+        'buttons',
+        'codeblock',
+        'aside',
+        'center',
+        'slices',
+        'settings',
+        'katex';
+
+katex > * {
+          font-family: "Lato" !important;
+}

@@ -16,7 +16,7 @@ body {
   margin: 0;
 }
 
-h2 {
+h2, #center h1 {
   @include text-crop;
   align-self: flex-start;
   margin: 0;
@@ -37,7 +37,7 @@ h2 {
   }
 }
 
-h3 {
+h3, #center h2 {
   @include text-crop;
   align-self: flex-start;
   margin: 0;
@@ -102,5 +102,10 @@ p {
   margin: 0;
   hyphens: true;
   padding-bottom: $small;
+  max-width: calc(100vw / 2 - (100vw - 21rem) / 3);
 //  border: brown solid 1px;
+}
+
+code {
+  font-size: 120%;
 }

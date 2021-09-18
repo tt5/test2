@@ -1,0 +1,15 @@
+<h1 id="regex">regex</h1>
+<h2 id="regexp">regexp</h2>
+<p><em>(</em> atom quantifier$^?$ <em>)</em> ²s¹<br><em>(</em> ²q¹ <strong><code>|</code></strong> <em>(</em> atom quantifier$^?$ <em>)</em> ²s¹ ²q¹ <em>)</em> ²s¹</p>
+<h2 id="atom">atom</h2>
+<p>░░ ²q¹ <strong><code>(</code></strong> regexp <strong><code>)</code></strong><br>░░ ²q¹ <em>any character exept</em> ²q¹ <code>. \ ? ²s¹ + { } ( ) | [ ]</code><br>░░ ²q¹ <strong><code>.</code></strong> ²q¹ (<em>this means</em> <code>[^\n\r]</code>)<br>░░ ²q¹ <strong><code>\</code></strong> <em>one of</em> ²q¹ <code>n r t . \ ? ²s¹ + { } ( ) | [ ] _ ^</code><br>░░ ²q¹ <strong><code>\P</code></strong> <em>or</em> <strong><code>\p</code></strong> <strong><code>{</code></strong> more1 <strong><code>}</code></strong><br>░░ ²q¹ <strong><code>\</code></strong> <em>one of</em> ²q¹ <code>s S i I c C d D w W a A</code><br>░░ ²q¹ charClassExpr  </p>
+<h3 id="more1">more1</h3>
+<p><code>L</code> <em>opt one of</em> ²q¹ <code>u l t m o</code><br><code>M</code> <em>opt one of</em> ²q¹ <code>n c l</code><br><code>N</code> <em>opt one of</em> ²q¹ <code>d l o</code><br><code>P</code> <em>opt one of</em> ²q¹ <code>c d s e i f o</code><br><code>Z</code> <em>opt one of</em> ²q¹ <code>s l p</code><br><code>S</code> <em>opt one of</em> ²q¹ <code>m c k o</code><br><code>C</code> <em>opt one of</em> ²q¹ <code>c f o n</code><br><code>Is</code> normalized-block-name (<em>e.g.</em> <code>Latin-1Supplement</code>)  </p>
+<h2 id="charclassexpr">charClassExpr</h2>
+<p><code>[</code> <code>^</code>$^?$ charGroupPart$^+$ character-class-substr$^?$ <code>]</code></p>
+<h3 id="character-class-substr">character-class-substr</h3>
+<p><code>[</code> <code>-</code> charClassExpr <code>]</code></p>
+<h3 id="something">something</h3>
+<p>every character exept <code>\ [ ]</code><br><code>\</code> one of <em>[</em> <code>n r t . \ ? ²s¹ + { } ( ) | [ ] _ ^</code> <em>]</em></p>
+<h3 id="chargrouppart">charGroupPart</h3>
+<p>something<br>something <code>-</code> something<br><code>\P</code> <em>or</em> <code>\p {</code> more1 <code>}</code><br><code>\</code> one of ²q¹ [ <code>s S i I c C d D w W a A</code> ]  </p>

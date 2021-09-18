@@ -1,49 +1,295 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="./index.css">
-<title>My Title</title></head><body><div id="svgcontainer2"><div id="line-over"></div>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>My Title</title>
+
+<link rel="stylesheet" href="./index.css">
+
+
+</head><body><script>
+  function myfetch(file) {
+    fetch(file)
+      .then(function (response) {
+        return response.text();
+      })
+      .then(function (html) {
+        //       html = "<div class='page-content'>" + html + "</div>"
+
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(html, 'text/html');
+
+        var elements1 = doc.querySelectorAll('*');
+
+        var pageContent =
+          elements1[0].querySelectorAll('.page-content')[0].innerHTML;
+
+        document.getElementById('center').innerHTML = pageContent;
+
+        var container = document.getElementById('center');
+        var elements = container.querySelectorAll('h1, h2, h3, p, pre');
+
+        var bottom = container.getBoundingClientRect().bottom;
+/*
+        for (let i = 0; i < elements.length; i++) {
+          if (
+            elements[i].getBoundingClientRect().bottom >
+            document.body.clientHeight
+          ) {
+            let diff =
+              elements[i].getBoundingClientRect().top -
+              document.body.clientHeight;
+            diff = Math.abs(diff.toFixed(0));
+
+            let flag = false;
+            let bufferStr = '';
+
+            for (let k = 0; k <= diff; k = k + 10) {
+              bufferStr += `<div class='buffer-slice'>${k}</div>`;
+              flag = true;
+            }
+
+            if (flag) {
+              let buffer = document.createElement('div');
+              buffer.innerHTML = bufferStr;
+              elements[i - 1].appendChild(buffer);
+            }
+            break;
+          }
+        }
+*/
+        let soffset3 = document.getElementById("center").offsetHeight;
+        let pageBuffer = document.querySelector(".buffer-page")
+        let bottom2 = pageBuffer.getBoundingClientRect().y
+
+
+
+        for (let h = 0; h < 5; h++) {
+ 
+
+
+        if (bottom2 < soffset3 ) {break} 
+        for (let i = 0; i < elements.length; i++) {
+          if (
+            elements[i].getBoundingClientRect().bottom >
+            (document.body.clientHeight + (h ) * soffset3)
+          ) {
+            let diff =
+              elements[i].getBoundingClientRect().top -
+              (document.body.clientHeight + (h ) * soffset3);
+            diff = Math.abs(diff.toFixed(0));
+
+            let flag = false;
+            let bufferStr = '';
+
+            for (let k = 0; k <= diff; k = k + 10) {
+              bufferStr += `<div class='buffer-slice'></div>`;
+              flag = true;
+            }
+
+            if (flag) {
+              let buffer = document.createElement('div');
+              buffer.innerHTML = bufferStr;
+              elements[i - 1].appendChild(buffer);
+            }
+            break;
+          }
+        }
+
+
+var mycenter = document.getElementById("center")
+    renderMathInElement(mycenter, {
+      delimiters: [
+        {
+          left: '$$',
+          right: '$$',
+          display: true,
+        },
+        {
+          left: '$',
+          right: '$',
+          display: false,
+        },
+      ],
+    });
+
+
+
+
+
+
+      }
+
+
+      soffset3 = document.getElementById("center").offsetHeight;
+pageBuffer = document.querySelector(".buffer-page")
+         bottom2 = pageBuffer.getBoundingClientRect().y
+
+         var sheight2 = document.getElementById("center").scrollHeight - document.querySelector(".buffer-page").clientHeight;
+
+        var pageNumberTotal2 = +(sheight2 / soffset3).toFixed(0) + 1
+        document.getElementById("pageNumberTotal").innerHTML=`${pageNumberTotal2}`
+        document.getElementById("pageNumberCounter").innerHTML="1"
+
+
+      });
+  }
+</script>
+<div id="svgcontainer2"><div id="line-over"></div>
 <div id="svgcontainer"></div>
   <div id="line-under"></div>
-</div><div id="grid"><div id="title"><div id="title-content"></div></div><div id="top"><div
+</div><div id="grid"><div id="title"><div id="title-content"></div></div><div id="top">
+<div
   id="topics"
   x-data="{ open: false }"
   @mouseleave="open = false"
 >
-  <button id="a-settings" @mouseover="open = true">web</button>
+  <button id="a-settings" @mouseover="open = true" @click="open = ! open; myfetch('/html/topics/start.html');">start</button>
   <div x-show="open">
-  <button id="page2">page2</button>
-    <button>media</button>
-    <button>progr</button>
-    <button>math</button>
-    <button>lang</button>
-    <button>techne</button>
-    <button>gw</button>
-    <button>m4ddata</button>
+    <button id="menu-web" @click="open = false; myfetch('/html/topics/web.html');">web</button>
+    <button id="menu-progr" @click="open = false; myfetch('/html/topics/progr.html');">progr</button>
   </div>
 </div>
 
 <div
   id="settings"
-  x-data="{ open: false }"
+  x-data="{ open: false,
+    left: false,
+    setLeft: (a) => {
+
+      if (a == true) {
+      document.getElementById('center').classList.add('settings-left')
+    } else {
+      document.getElementById('center').classList.remove('settings-left')
+    }
+  },
+    setNormal: () => {
+      document.getElementById('center').classList.remove('settings-left')
+    }
+  }"
   @mouseleave="open = false"
 >
-  <button id="b-settings" @mouseover="open = true">Normal</button>
+  <button id="b-settings" @mouseover="open = true" @click="setNormal();">normal</button>
   <div x-show="open">
-    <button>Focus</button>
-    <button>Fullscreen</button>
+    <button id="settings-left" @click="left = ! left; setLeft(left);">left</button>
   </div>
 </div>
-</div><div id="border-left"></div><div id="center"><h2 id="h1">H1</h2>
-<h3 id="h2">H2</h3>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quis reiciendis, consectetur explicabo eius natus non vel voluptas, architecto qui optio itaque neque minima at. Ipsum, neque commodi. Omnis, molestias. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis cum ad sunt cumque itaque, incidunt consequatur nulla, hic mollitia animi earum cupiditate quas numquam tenetur, fugiat ex quos nihil laborum. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate eos vel, delectus velit, quos natus iure rem asperiores sit quaerat illo esse expedita cum atque dolorem! Reiciendis earum quo eligendi.</p>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quis reiciendis, consectetur explicabo eius natus non vel voluptas, architecto qui optio itaque neque minima at. Ipsum, neque commodi. Omnis, molestias. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis cum ad sunt cumque itaque, incidunt consequatur nulla, hic mollitia animi earum cupiditate quas numquam tenetur, fugiat ex quos nihil laborum. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate eos vel, delectus velit, quos natus iure rem asperiores sit quaerat illo esse expedita cum atque dolorem! Reiciendis earum quo eligendi.</p>
-<p>Text <strong>bold</strong> Text <em>italic</em> text</p>
-<p>Text <code>inline</code> Text</p>
-<pre><code class="hljs txt language-txt">code block
-</code></pre>
-<p>Syntax highlighting</p>
-<pre><code class="hljs js language-js"><span class="hljs-keyword">var</span> foo = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">bar</span>) </span>{
-  <span class="hljs-keyword">return</span> bar++;
-};
+</div><div id="border-left"></div><div id="center"><div class="page-content">
+<h1 id="hello">Hello</h1>
+<p>start</p>
 
-<span class="hljs-built_in">console</span>.log(foo(<span class="hljs-number">5</span>));
-</code></pre>
-<p>Text <a href="https://en.wikipedia.org">mylink</a> text</p></div><div id="border-right"><div id="pageNumbers"><span id="pageNumberCounter">1</span><span>/</span><span id="pageNumberTotal"></span></div></div><div id="bottom"><div id="bottom-content"><button id="button-scroll">scroll down</button><button id="button-start">scroll start</button><button id="button-up">scroll up</button></div></div></div><script src="./alpine.js" defer></script><script type="module" src="./index.js"></script></body></html>
+<div class="buffer-page">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+</div></div><div id="border-right"><div id="pageNumbers"><span id="pageNumberCounter">1</span><span>/</span><span id="pageNumberTotal">1</span></div></div><div id="bottom"><div id="bottom-content"><button id="button-scroll">down</button><button id="button-start">top</button><button id="button-up">up</button></div></div></div><script src="./katex.js"></script>
+
+<script defer src="./auto-render.js"></script>
+
+<script type="module" src="./index.js"></script><script src="./alpine.js" defer></script></body></html>

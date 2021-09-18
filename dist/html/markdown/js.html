@@ -1,0 +1,43 @@
+<h1 id="js">js</h1>
+<h2 id="intro">Intro</h2>
+<pre><code class="language-js">const arr = [3, 5, 7];
+arr.foo = &#39;hello&#39;;
+
+for (let i in arr) {
+   console.log(i); // logs &quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;foo&quot;, undefined
+}
+
+for (let i of arr) {
+   console.log(i); // logs 3, 5, 7, undefined
+}
+</code></pre>
+<p>install node with nvm</p>
+<pre><code class="language-bash">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+nvm install 14
+</code></pre>
+<h2 id="doc">Doc</h2>
+<p><strong>Properties</strong> are containers that hold other objects, primitive values or functions. Object that provides shared properties for other objects. Part of an object that associates a key (String or Symbol) and a value.
+Every object created by a constructor has an implicit reference (called the object&#39;s prototype)
+to the value of its constructor&#39;s &quot;prototype&quot; property.</p>
+<p>Properties can be added to objects dynamically by assigning values to them.</p>
+<p>A <strong>primitive value</strong> is a member of one of the following built-in types:
+Undefined, Null, Boolean, Number, BigInt, Symbol, String.</p>
+<p>An <strong>object</strong> is a member of the built-in type Object.
+An object is a collection of zero or more properties each with attributes
+that determine how each property can be used.
+The prototype may be the null value.</p>
+<p>A <strong>function</strong> is a callable object. A function that is associeded with an object via
+a property is called a <strong>method</strong>.
+When a function is called as a method of an object, the object is passed to the function
+as its <em>this</em> value. In addition to its properties, a function contains executable code and
+state that determine how it behaves when invoked.</p>
+<p>Defined functions are not required to have their declaration appear textually before calls to them.</p>
+<p>Objects are created by using constructors in <code>new</code> expressions.
+Alternatively, a new object may be created with an explicitly specified prototype using
+the <code>Object.create</code> built-in function.</p>
+<p>String<br>Each integer value in the sequence usually represents a single 16-bit unit of UTF-16 text.</p>
+<p>attribute<br>Internal value that defines some characteristic of a property.</p>
+<p>To specify an empty regular expression, use <code>/(?:)/</code></p>
+<p>The export keyword is used to export things. It may appear in front of a function, class, or binding definition (let, const, or var).</p>
+<h2 id="typescript">typescript</h2>
+<p><code>never</code> is a type of values that never occur. There are no possible values of type never, not even null or undefined.</p>

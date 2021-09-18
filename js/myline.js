@@ -23,11 +23,10 @@ var height = 100;
 var svg = d3
   .select('#svgcontainer')
   .append('svg')
-  .attr('width', width)
-  .attr('height', height)
+  .attr("viewBox", `0 0 ${width} ${height}`)
   .attr('stroke', 'white')
   .attr('fill', 'none')
-  .attr('stroke-width', '3');
+  .attr('stroke-width', '3')
 
 var mysvgpath = svg.append('path').attr('d', path(0));
 

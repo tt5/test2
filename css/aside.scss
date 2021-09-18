@@ -1,0 +1,14 @@
+.aside {
+  display: inline-block;
+  position: fixed;
+  right: calc((100vw - 21rem) / 3);
+  width: 0rem;
+  z-index: -1;
+}
+
+.formula {
+  display: inline-block;
+  position: fixed;
+  left: 1rem;
+  z-index: -1;
+}

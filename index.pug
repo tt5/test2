@@ -4,6 +4,7 @@ html(lang="en")
   meta(charset="utf-8")
   include head.html
  body
+  include html/functions.html
   #svgcontainer2
    include html/line.html
   #grid
@@ -13,18 +14,20 @@ html(lang="en")
     include html/menu.html
    #border-left
    #center
-    include markdown/html/base.html
+    include html/markdown/start-C.html
    #border-right
     #pageNumbers
      span#pageNumberCounter 1
      span /
-     span#pageNumberTotal
+     span#pageNumberTotal 1
    #bottom
     #bottom-content
-     button#button-scroll scroll down
-     button#button-start scroll start
-     button#button-up scroll up
+     button#button-scroll down
+     button#button-start top
+     button#button-up up
   include html/after.html
-  script(src="./alpine.js" defer)
   script(type="module" src="./index.js")
+  script(src="./alpine.js" defer)
+
+
 

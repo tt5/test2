@@ -1,6 +1,7 @@
 #svgcontainer2 {
   position: fixed;
   height: $extraLarge;
+  width: 100%;
   display: flex;
   flex-direction: column;
   div {
@@ -11,4 +12,8 @@
 }
 #line-under {
   height: $medium;
+}
+
+object {
+  width: 100%;
 }
