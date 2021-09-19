@@ -1,4 +1,4 @@
-@import 'colors', 'sizes';
+@import 'colors', 'sizes', 'textcrop' ;
 
 #center {
   display: flex;
@@ -68,12 +68,13 @@
 
 #bottom {
   //grid-area: bottom;
-  grid-column: 1 / span 2;
-  grid-row: 3 / 4;
+  grid-area: title;
+  //grid-column: 1 / span 2;
+  //grid-row: 3 / 4;
   //background-color: $color-dark;
   //background-color: none;
   box-sizing: border-box;
-  border-top: 0.3rem solid $color-light;
+  //border-top: 0.3rem solid $color-light;
   //border-top: 0.3rem solid transparent;
   z-index: 1;
 }
@@ -106,9 +107,11 @@
 #bottom-content {
  display: flex; 
  justify-content: flex-start;
- gap: 1rem;
+ gap: $small;
  padding-right: $small;
  padding-left: $small;
+ padding-top: $medium;
+// background-color: $color-dark;
 }
 
 .picture {

@@ -1,5 +1,5 @@
 /* stylelint-disable font-family-no-missing-generic-family-keyword */
-/*
+
 @font-face {
   font-family: 'KaTeX_AMS';
   src: url(fonts/KaTeX_AMS-Regular.woff2) format('woff2'), url(fonts/KaTeX_AMS-Regular.woff) format('woff'), url(fonts/KaTeX_AMS-Regular.ttf) format('truetype');
@@ -120,7 +120,7 @@
   font-weight: normal;
   font-style: normal;
 }
-*/
+
 .katex {
   font: normal 1.21em KaTeX_Main, Times New Roman, serif;
   line-height: 1.2;

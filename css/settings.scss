@@ -1,3 +1,23 @@
 .settings-left {
   grid-column: 1 / span 4 !important;
+//  min-width: 68vw !important;
+  max-width: 50rem !important;
+  border-right: transparent !important;
+  overflow: visible !important;
+  width: 68vw !important;
+  &>* {
+  max-width: 50rem !important;
+  width: 68vw !important;
+//  min-width: 68vw;
+  }
+  & .formula {
+    position: inherit !important;
+    display: inline;
+    width: auto;
+    }
+//  & p .aside {
+//    position: inherit;
+//    display: inline-block;
+//    width: auto;
+//    }
 }

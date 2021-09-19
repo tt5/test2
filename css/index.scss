@@ -12,6 +12,4 @@
         'settings',
         'katex';
 
-katex > * {
-          font-family: "Lato" !important;
-}
+[x-cloak] { display: none !important; }

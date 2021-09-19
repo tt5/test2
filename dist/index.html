@@ -1,9 +1,12 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>My Title</title>
 
-<link rel="stylesheet" href="./index.css">
 
 
-</head><body><script>
+
+  <script type="module" crossorigin src="/assets/index.5a728d58.js"></script>
+    <link rel="modulepreload" href="/assets/vendor.40442c01.js">
+    <link rel="stylesheet" href="/assets/index.5ac034b9.css">
+  </head><body><script>
   function myfetch(file) {
     fetch(file)
       .then(function (response) {
@@ -133,21 +136,23 @@ pageBuffer = document.querySelector(".buffer-page")
 </script>
 <div id="svgcontainer2"><div id="line-over"></div>
 <div id="svgcontainer"></div>
-  <div id="line-under"></div>
+<div id="line-under"></div>
 </div><div id="grid"><div id="title"><div id="title-content"></div></div><div id="top">
 <div
   id="topics"
+  x-cloak
   x-data="{ open: false }"
   @mouseleave="open = false"
 >
-  <button id="a-settings" @mouseover="open = true" @click="open = ! open; myfetch('/html/topics/start.html');">start</button>
+  <button id="a-settings" @mouseover="open = true" @click="open = ! open; $store.selection = 'start'; myfetch('/html/topics/start.html');">start</button>
   <div x-show="open">
-    <button id="menu-web" @click="open = false; myfetch('/html/topics/web.html');">web</button>
-    <button id="menu-progr" @click="open = false; myfetch('/html/topics/progr.html');">progr</button>
+    <button id="menu-web" @click="open = false; $store.selection = 'web'; myfetch('/html/topics/web.html');">web</button>
+    <button class="button-folder" id="menu-progr" @click="open = false; $store.selection = 'progr'; myfetch('/html/topics/progr.html');">progr</button>
   </div>
 </div>
 
 <div
+  x-cloak
   id="settings"
   x-data="{ open: false,
     left: false,
@@ -155,12 +160,15 @@ pageBuffer = document.querySelector(".buffer-page")
 
       if (a == true) {
       document.getElementById('center').classList.add('settings-left')
+      myfetch(`/html/topics/${$store.selection}.html`)
     } else {
       document.getElementById('center').classList.remove('settings-left')
+      myfetch(`/html/topics/${$store.selection}.html`)
     }
   },
     setNormal: () => {
       document.getElementById('center').classList.remove('settings-left')
+      myfetch(`/html/topics/${$store.selection}.html`)
     }
   }"
   @mouseleave="open = false"
@@ -170,6 +178,12 @@ pageBuffer = document.querySelector(".buffer-page")
     <button id="settings-left" @click="left = ! left; setLeft(left);">left</button>
   </div>
 </div>
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.store(
+        'selection', "start")
+    })
+</script>
 </div><div id="border-left"></div><div id="center"><div class="page-content">
 <h1 id="hello">Hello</h1>
 <p>start</p>
@@ -292,4 +306,4 @@ pageBuffer = document.querySelector(".buffer-page")
 
 <script defer src="./auto-render.js"></script>
 
-<script type="module" src="./index.js"></script><script src="./alpine.js" defer></script></body></html>
+<script src="./alpine.js" defer></script></body></html>

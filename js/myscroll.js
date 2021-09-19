@@ -9,6 +9,7 @@ var scrollCount = 0
 var pageNumberTotal = +(sheight / soffset).toFixed(0) + 1
 
 var asides = document.getElementsByClassName('aside');
+var formulas = document.getElementsByClassName('formula');
 
 
 // move Text up (scroll down)
@@ -32,8 +33,12 @@ console.log(+countPage >= +maxPage)
 
   scrollCount++;
   
-  for (var i = 0; i < asides.length; i++) {
+  for (let i = 0; i < asides.length; i++) {
       let el = asides.item(i)
+      el.style.transform = `translate(0,-${scrollCount * soffset2}px)`
+  }
+  for (let i = 0; i < formulas.length; i++) {
+      let el = formulas.item(i)
       el.style.transform = `translate(0,-${scrollCount * soffset2}px)`
   }
   
@@ -43,8 +48,12 @@ console.log(+countPage >= +maxPage)
 function move_start() {
     document.getElementById('center').scrollTop = 0;
     
-    for (var i = 0; i < asides.length; i++) {
+    for (let i = 0; i < asides.length; i++) {
       let el = asides.item(i)
+      el.style.transform = "translate(0,0px)"
+    }
+    for (let i = 0; i < formulas.length; i++) {
+      let el = formulas.item(i)
       el.style.transform = "translate(0,0px)"
     }
     
@@ -60,8 +69,12 @@ function move_down() {
     document.getElementById('center').scrollTop -= soffset;
     scrollCount--;
     
-    for (var i = 0; i < asides.length; i++) {
+    for (let i = 0; i < asides.length; i++) {
       let el = asides.item(i)
+      el.style.transform = `translate(0,-${(scrollCount) * soffset}px)`
+    }
+    for (let i = 0; i < formulas.length; i++) {
+      let el = formulas.item(i)
       el.style.transform = `translate(0,-${(scrollCount) * soffset}px)`
     }
     
