@@ -3,10 +3,10 @@
 
 
 
-  <script type="module" crossorigin src="/assets/index.5a728d58.js"></script>
-    <link rel="modulepreload" href="/assets/vendor.40442c01.js">
-    <link rel="stylesheet" href="/assets/index.5ac034b9.css">
-  </head><body><script>
+  <script type="module" crossorigin src="/assets/index.da0bf89f.js"></script>
+    <link rel="modulepreload" href="/assets/vendor.8fac99b9.js">
+    <link rel="stylesheet" href="/assets/index.6ae9e9ab.css">
+  </head><body x-data="{ sel: $persist($store.selection).using(sessionStorage)}" @keyup.space="$store.moveUp.move()"><script>
   function myfetch(file) {
     fetch(file)
       .then(function (response) {
@@ -25,8 +25,19 @@
 
         document.getElementById('center').innerHTML = pageContent;
 
+var mycenter = document.getElementById("center")
+    renderMathInElement(mycenter, {
+      delimiters: [
+        {
+          left: '$',
+          right: '$',
+          display: false,
+        },
+      ],
+    });
+
         var container = document.getElementById('center');
-        var elements = container.querySelectorAll('h1, h2, h3, p, pre');
+        var elements = container.querySelectorAll('h1, h2, h3, h4, p, pre, code');
 
         var bottom = container.getBoundingClientRect().bottom;
 /*
@@ -61,11 +72,9 @@
         let pageBuffer = document.querySelector(".buffer-page")
         let bottom2 = pageBuffer.getBoundingClientRect().y
 
-
-
-        for (let h = 0; h < 5; h++) {
+        for (let h = 0; h < 100; h++) {
+        console.log("h: " + h)
  
-
 
         if (bottom2 < soffset3 ) {break} 
         for (let i = 0; i < elements.length; i++) {
@@ -96,38 +105,18 @@
         }
 
 
-var mycenter = document.getElementById("center")
-    renderMathInElement(mycenter, {
-      delimiters: [
-        {
-          left: '$$',
-          right: '$$',
-          display: true,
-        },
-        {
-          left: '$',
-          right: '$',
-          display: false,
-        },
-      ],
-    });
 
+     }
 
-
-
-
-
-      }
-
-
-      soffset3 = document.getElementById("center").offsetHeight;
+      soffset3 = document.getElementById("center").clientHeight;
+//      console.log("soffset3: " + soffset3)
 pageBuffer = document.querySelector(".buffer-page")
          bottom2 = pageBuffer.getBoundingClientRect().y
 
          var sheight2 = document.getElementById("center").scrollHeight - document.querySelector(".buffer-page").clientHeight;
 
         var pageNumberTotal2 = +(sheight2 / soffset3).toFixed(0) + 1
-        document.getElementById("pageNumberTotal").innerHTML=`${pageNumberTotal2}`
+        document.getElementById("pageNumberTotal").innerHTML=`${((bottom2 / soffset3)+0.5).toFixed(0)}`
         document.getElementById("pageNumberCounter").innerHTML="1"
 
 
@@ -142,12 +131,12 @@ pageBuffer = document.querySelector(".buffer-page")
   id="topics"
   x-cloak
   x-data="{ open: false }"
-  @mouseleave="open = false"
+  @mouseleave="open = false;"
 >
-  <button id="a-settings" @mouseover="open = true" @click="open = ! open; $store.selection = 'start'; myfetch('/html/topics/start.html');">start</button>
+  <button id="a-settings" x-text="sel.replace(/.*\//,'').replace(/-C$/,'')" @mouseover="open = true" @click="open = ! open; sel = $store.selection; myfetch('/html/topics/start.html');"></button>
   <div x-show="open">
-    <button id="menu-web" @click="open = false; $store.selection = 'web'; myfetch('/html/topics/web.html');">web</button>
-    <button class="button-folder" id="menu-progr" @click="open = false; $store.selection = 'progr'; myfetch('/html/topics/progr.html');">progr</button>
+    <button id="menu-web" @click="open = false; $store.selection = 'topics/web'; sel = $store.selection; myfetch('/html/topics/web.html');">web</button>
+    <button class="button-folder" id="menu-progr" @click="open = false; $store.selection = 'topics/progr'; myfetch('/html/topics/progr.html');">progr</button>
   </div>
 </div>
 
@@ -173,21 +162,13 @@ pageBuffer = document.querySelector(".buffer-page")
   }"
   @mouseleave="open = false"
 >
-  <button id="b-settings" @mouseover="open = true" @click="setNormal();">normal</button>
+  <button id="b-settings" @mouseover="open = true" @click="setNormal();"></button>
   <div x-show="open">
     <button id="settings-left" @click="left = ! left; setLeft(left);">left</button>
   </div>
 </div>
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.store(
-        'selection', "start")
-    })
-</script>
 </div><div id="border-left"></div><div id="center"><div class="page-content">
-<h1 id="hello">Hello</h1>
-<p>start</p>
-
+  <div x-init="myfetch(`/html/${sel}.html`);"></div>
 <div class="buffer-page">
   <br>
   <br>
@@ -302,8 +283,9 @@ pageBuffer = document.querySelector(".buffer-page")
   <br>
   <br>
 </div>
-</div></div><div id="border-right"><div id="pageNumbers"><span id="pageNumberCounter">1</span><span>/</span><span id="pageNumberTotal">1</span></div></div><div id="bottom"><div id="bottom-content"><button id="button-scroll">down</button><button id="button-start">top</button><button id="button-up">up</button></div></div></div><script src="./katex.js"></script>
+</div>
+</div><div id="border-right"><div id="pageNumbers"><span id="pageNumberCounter">1</span><span>/</span><span id="pageNumberTotal">1</span></div></div><div id="bottom"><div id="bottom-content"><button id="button-scroll">down</button><button id="button-start">top</button><button id="button-up">up</button></div></div></div><script src="./katex.js"></script>
 
 <script defer src="./auto-render.js"></script>
 
-<script src="./alpine.js" defer></script></body></html>
+</body></html>

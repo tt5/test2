@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {},
   "dependencies": {
+    "@alpinejs/persist": "^3.3.5",
     "alpinejs": "^3.3.3",
     "cli-glob": "^0.1.0",
     "d3": "^7.0.1",
@@ -11,6 +12,7 @@
     "hyperpug": "^1.5.3",
     "jshint": "^2.13.1",
     "jshon": "^0.0.20121031",
+    "katex": "^0.13.18",
     "marked": "^3.0.4",
     "pug-cli": "*",
     "rexreplace": "^7.0.3",

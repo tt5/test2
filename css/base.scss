@@ -102,7 +102,7 @@ p {
   margin: 0;
   hyphens: true;
   padding-bottom: $small;
-  max-width: calc(100vw / 2 - (100vw - 21rem) / 3);
+  max-width: calc(100vw / 2 - (100vw - 21rem) / 3 + 2rem);
 //  border: brown solid 1px;
 }
 

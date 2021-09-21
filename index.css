@@ -177,7 +177,7 @@ p {
   margin: 0;
   hyphens: true;
   padding-bottom: 1rem;
-  max-width: calc(50vw - (100vw - 21rem) / 3);
+  max-width: calc(50vw - (100vw - 21rem) / 3 + 2rem);
 }
 p::before, p::after {
   content: "";
@@ -355,6 +355,7 @@ grayscale style (c) MY Sun <simonmysun@gmail.com>
   border-right: #c5cece solid 1rem;
   padding-left: 1rem;
   z-index: 2;
+  hyphens: auto;
 }
 
 #grid {
@@ -550,6 +551,11 @@ button {
   background-color: hsl(calc(180 + 240), 19%, 58%);
 }
 
+#a-settings {
+  font-weight: 400;
+  background-color: hsl(180, 19%, calc(58% + 21%));
+}
+
 #color1 {
   background-color: #80a8a8;
 }
@@ -710,12 +716,6 @@ pre {
   z-index: -1;
 }
 
-/*
-#center-bottom {
-  background-color: red;
-  height: 1px;
-}
-*/
 #color1 {
   background-color: #80a8a8;
 }
@@ -788,6 +788,11 @@ pre {
 .settings-left .formula {
   position: inherit !important;
   display: inline;
+  width: auto;
+}
+.settings-left p .aside {
+  position: inherit;
+  display: inline-block;
   width: auto;
 }
 

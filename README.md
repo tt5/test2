@@ -3,10 +3,12 @@
 npx pug index.pug
 npx vite
 
+m4 def.m4 -F defm4
+./build
+
 # bundle
 
 npx vite build
-cp alpine.js dist/
 cp katex.js dist/
 cp auto-render.js dist/
 cd dist

@@ -1,7 +1,7 @@
 <div class="page-content">
 <div id="progr">
-  <button id="button-js" @click="$store.selection = 'js-C'; myfetch('html/markdown/js-C.html');">js</button>
-  <button id="button-regex" @click="$store.selection = 'regex-C'; myfetch('html/markdown/regex-C.html');">regex</button>
+  <button id="button-js" @click="$store.selection = 'markdown/js-C'; sel = $store.selection; myfetch('html/markdown/js-C.html');">js</button>
+  <button id="button-regex" @click="$store.selection = 'markdown/regex-C'; sel = $store.selection; myfetch('html/markdown/regex-C.html');">regex</button>
 </div>
 <div class="buffer-page"></div>
 </div>

@@ -1,24 +1,37 @@
 <div class="page-content">
 <h1 id="js">js</h1>
 <h2 id="intro">Intro</h2>
+<p>(ECMA-262 12th edition june 2021)</p>
+<p>Install node with nvm (install script).  </p>
+<p><code>nvm use 16</code><br>v16.9.1</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;  </p>
 <pre><code class="language-js">const arr = [3, 5, 7];
 arr.foo = &#39;hello&#39;;
 
 for (let i in arr) {
-   console.log(i); // logs &quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;foo&quot;, undefined
-}
-
-for (let i of arr) {
-   console.log(i); // logs 3, 5, 7, undefined
 }
 </code></pre>
-<p>install node with nvm</p>
-<pre><code class="language-bash">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-nvm install 14
+<p><code>&quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;foo&quot;</code></p>
+<pre><code class="language-js">for (let i of arr) {
+   console.log(i);
+}
+</code></pre>
+<p><code>3, 5, 7</code></p>
+<pre><code class="language-js">a = b
+++c
+</code></pre>
+<p>is transformed by automatic semicolon insertion:</p>
+<pre><code class="language-js">a = b;
+++c;
 </code></pre>
 <h2 id="doc">Doc</h2>
-<p><strong>Properties</strong> are containers that hold other objects, primitive values or functions. Object that provides shared properties for other objects. Part of an object that associates a key (String or Symbol) and a value.
-Every object created by a constructor has an implicit reference (called the object&#39;s prototype)
+<p><strong>Properties</strong> are containers that hold other objects, primitive values or functions. Part of an object that associates a key (String or Symbol) and a value.</p>
+<p>Properties are accessed by name, using either the dot notation:</p>
+<p><em>MemberExpression</em> <strong>.</strong> IdentifierName<br><em>CallExpression</em> <strong>.</strong> <em>IdentifierName</em></p>
+<p>or the bracket notation:</p>
+<p><em>MemberExpression</em> <strong>[</strong> <em>Expression</em> <strong>]</strong>
+<em>CallExpression</em> <strong>[</strong> <em>Expression</em> <strong>]</strong></p>
+<p>Every object created by a constructor has an implicit reference (called the object&#39;s prototype)
 to the value of its constructor&#39;s &quot;prototype&quot; property.</p>
 <p>Properties can be added to objects dynamically by assigning values to them.</p>
 <p>A <strong>primitive value</strong> is a member of one of the following built-in types:
@@ -40,6 +53,241 @@ the <code>Object.create</code> built-in function.</p>
 <p>attribute<br>Internal value that defines some characteristic of a property.</p>
 <p>To specify an empty regular expression, use <code>/(?:)/</code></p>
 <p>The export keyword is used to export things. It may appear in front of a function, class, or binding definition (let, const, or var).</p>
+<h2 id="expressions">Expressions</h2>
+<p>identifers</p>
+<p>Exponential: <code>**</code></p>
+<p>Multiplicative: <code>* / %</code></p>
+<p>Additive: <code>+ -</code></p>
+<p>Bitwise Shift: <code>&lt;&lt; &gt;&gt; &gt;&gt;&gt;</code><br><code>&gt;&gt;&gt;</code> performs a zero-filling bitwise right operation on the
+left operand by the amount specified by the right operand.</p>
+<p>Relational: <code>&lt; &gt; &lt;= &gt;= instanceof in</code><br>InstanceOfOperator(V, target)</p>
+<p>Equality: <code>== != === !==</code></p>
+<p>Binary Bitwise: <code>&amp; ^ |</code></p>
+<p>Conditional: <code>? :</code><br>ShortCircuitExpression<br>ShortCircuitExpression <strong>?</strong> AssignmentExpression <strong>:</strong> AssignmentExpression</p>
+<p>Comma: <code>,</code>
+AssignmentExpression
+Expression <strong>,</strong> AssignmentExpression</p>
+<h3 id="assignment-operators">Assignment Operators</h3>
+<p>ConditionalExpression<br>YieldExpression<br>ArrowFunction<br>AsyncArrowFunction<br>LeftHandSideExpression <code>=</code> AssignmentExpression<br>LeftHandSideExpression AssignmentOperator AssignmentExpression<br>LeftHandSideExpression <code>&amp;&amp;=</code> AssignmentExpression<br>LeftHandSideExpression <code>||=</code> AssignmentExpression<br>LeftHandSideExpression <code>??=</code> AssignmentExpression  </p>
+<p>AssignmentOperator: <code>*= /= %= += -= &lt;&lt;= &gt;&gt;&gt;= &amp;= ^= |= **=</code></p>
+<h3 id="primary-expression">primary expression*</h3>
+<p><strong>(</strong> Expression <strong>)</strong></p>
+<p>CoverParenthesizedExpressionAndArrowParameterList</p>
+<p><code>this</code></p>
+<p>IdentifierReference
+Literal
+ArrayLiteral<br>ObjectLiteral
+RegularExpressionLiteral
+TemplateLiteral</p>
+<p>FunctionExpression<br>GeneratorExpression<br>ClassExpression<br>AsyncFunctionExpression<br>AsyncGeneratorExpression  </p>
+<p>CoverParenthesizedExpressionAndArrowParameterList</p>
+<h3 id="left-hand-side-expressions">Left-Hand-Side Expressions</h3>
+<p>NewExpression<br>CallExpression<br>MemberExpression OptionalChain
+MemberExpression TemplateLiteral</p>
+<p>Argument Lists<br>The evaluation of an argument list produces a List of values.</p>
+<p>Optional Chains<br>An optional chain is a chain of one or more property accesses and funcion
+calls, the first of which begins with the token <strong>?.</strong> .</p>
+<p>Import Calls  </p>
+<p>Tagged Templates<br>is a function call where the arguments of the call are
+derived from a TemplateLiteral.</p>
+<p>Meta Properties<br><code>new . target</code><br><code>import . meta</code></p>
+<h4 id="new"><code>new</code></h4>
+<p><code>new</code> <em>NewExpression</em><br><code>new</code> <em>MemberExpression</em> <em>Arguments</em></p>
+<h4 id="function-calls">Function Calls</h4>
+<p>CoverCallExpressionAndAsyncArrowHead<br>CallExpression Arguments  </p>
+<h4 id="super"><code>super</code></h4>
+<p><code>super</code> <strong>[</strong> Expression <strong>]</strong><br><code>super</code> <strong>.</strong> IdentifierName<br><code>super</code> Arguments</p>
+<h3 id="update-expressions">Update Expressions</h3>
+<p>Postfix Increment<br>Postfix Decrement
+Prefix Increment<br>Prefix Decrement  </p>
+<h3 id="unary-operators">Unary Operators</h3>
+<p>UpdateExpression<br><code>delete</code> UnaryExpression<br><code>void</code> UnaryExpression<br><code>typeof</code> UnaryExpression<br><code>+</code> UnaryExpression<br><code>-</code> UnaryExpression<br><code>~</code> UnaryExpression<br><code>!</code> UnaryExpression<br>AwaitExpression</p>
+<h2 id="statements-and-declarations">Statements and Declarations</h2>
+<p><code>let</code><br><code>const</code>  </p>
+<p><code>var</code></p>
+<p>Empty</p>
+<p>Expression</p>
+<p>If</p>
+<p><code>do</code> Statement <code>while (</code> Expression <code>);</code></p>
+<p><code>while (</code> Expression <code>)</code> Statement</p>
+<p>ForStatement  </p>
+<p>ForInOfStatement</p>
+<p><code>continue</code><br><code>break</code><br><code>return</code></p>
+<p><code>with (</code> Expression <code>)</code> Statement</p>
+<p><code>switch (</code> Expresssion <code>) {</code> CaseClauses and/or DefaultClause <code>}</code></p>
+<p>LabelIdentifier <strong>:</strong> Statement or FunctionDeclaration</p>
+<p><code>throw</code> Expression <code>;</code>  </p>
+<p><code>try</code> Block Catch<br><code>try</code> Block <code>finally</code> Block<br><code>try</code> Block Catch Finally</p>
+<p>When a catch clause catches an expception, its CatchParameter is bound
+to that exception.</p>
+<p><code>debugger ;</code></p>
+<p>Async Arrow Function Definitions</p>
+<p>Tail Position Calls</p>
+<h3 id="block">Block</h3>
+<p><strong>{</strong> Statements and Declarations  <strong>}</strong></p>
+<h2 id="functions-and-classes">Functions and Classes</h2>
+<p>FunctionDeclaration or FunctionExpression:<br><code>function</code> BindingIdentifier$_{opt}$ <code>(</code> FormalParameters <code>) {</code> StatementList <code>}</code></p>
+<p>ArrowFunction:<br>BindingIdentifier or CoverParenthesizedExpressionAndArrowParameterList <code>=&gt;</code> ConciseBody</p>
+<p>CoverParenthesizedExpressionAndArrowParameterList:<br><code>()</code>
+<code>(</code> Expression <strong>,</strong>$<em>{opt}$ <code>)</code>
+<code>(</code> Expression$</em>{opt}$  <code>...</code> BindingIdentifer or BindingPattern <code>)</code></p>
+<p>return the ArrowFormalParameter that is covered by CoverParenthesizedExpressionAndArrowParameterList.</p>
+<p>An ArrowFunction does not define local bindings for <code>arguments, super,this, new.target</code>.</p>
+<h3 id="generation-function-definition">Generation Function Definition</h3>
+<p>GeneratorMethod:<br><code>*</code> PropertyName <code>(</code> UniqueFormalParameters <code>)</code> <code>{</code> FunctionBody <code>}</code></p>
+<p>GeneratorDeclaration of GeneratorExpression:<br><code>function *</code> BindingIdentifier$_{opt}$ <code>(</code> FormalParameters <code>) {</code> FunctionBody <code>}</code></p>
+<p>The BindingIdentifer in a GeneratorExpression can be referenced from inside the
+GeneratorExpression&#39;s FunctionBody to allow the generator code to call itself recursively.</p>
+<p>YieldExpression:<br><code>yield</code> <code>*</code>$_{opt}$ AsignmentExpression</p>
+<p>AsyncGenertorMethod<br>AsyncGeneratorDeclaration, AsyncGeneratorExpression</p>
+<h3 id="class-definition">Class Definition</h3>
+<p>ClassDeclaration or ClassExpression:<br><code>class</code> BindingIdentifier$<em>{opt}$ ClassHeritage$</em>{opt}$ <code>{</code> ClassBody <code>}</code></p>
+<p>ClassHeritage:<br><code>extends</code> LeftHandSideExpression</p>
+<p>ClassElement:<br><code>static</code>$_{opt}$ MethodDefinition<br><code>;</code></p>
+<h3 id="async-function-definition">Async Function Definition</h3>
+<p>AsyncFunctionDeclaration or AsyncFunctionExpression:<br><code>async</code> BindingIdentifier$_{opt}$ <code>(</code> FormalParameters <code>)</code> <code>{</code> FunctionBody <code>}</code></p>
+<p>AsyncMethod:<br><code>async</code> PropertyName <code>(</code> UniqueFormalParameters <code>)</code> <code>{</code> FunctionBody <code>}</code></p>
+<p>AwaitExpression:<br><code>await</code> UnaryEpression</p>
+<h2 id="scripts-and-modules">Scripts and Modules</h2>
+<p>Script:<br>StatementList</p>
+<p>Module:<br>ImportDeclaration<br>ExportDeclaration<br>StatementListItem</p>
+<p><code>import</code> ImportClause <code>from</code> ModuleSpecifier<br><code>import</code> ModuleSpecifier;</p>
+<p><code>export *</code> FromClause <code>;</code>
+<code>export * as</code> IdentifierName FromClause <code>;</code><br><code>export {</code> IdentifierName$<em>{opt}$ <code>,</code>$</em>{opt}$ <code>}</code> FromClause <code>;</code>
+<code>export {</code> IdentifierName <code>as</code> IdentifierName$ <code>,</code>$_{opt}$ <code>}</code> FromClause <code>;</code></p>
+<h2 id="standard-built-in-objects">Standard Built-in Objects</h2>
+<p>length property, number of required Arguments</p>
+<p>Constructor Properties of the global object:</p>
+<p>Array<br>Map<br>Number<br>Promise<br>Proxy<br>Regexp<br>String<br>JSON  </p>
+<p>and more</p>
+<h2 id="fundamental-objects">Fundamental Objects</h2>
+<p>Object</p>
+<p>Function</p>
+<p>Boolean</p>
+<p>Symbol</p>
+<p>Error</p>
+<h2 id="numbers-and-dates">Numbers and Dates</h2>
+<p>BigInt</p>
+<p>Math</p>
+<p>Date</p>
+<p>Date.now()</p>
+<h2 id="text-processing">Text Processing</h2>
+<h3 id="string">String</h3>
+<p>String( value )
+String.fromCharCode(...codeUnits)
+String.fromCodePoint(...codePoints)</p>
+<p>Sting.prototype:</p>
+<p>charAt
+codePointAt
+codePointAt
+endsWith
+indexOf
+lastIndexOf
+repeat
+replace
+replaceAll
+search
+slice
+split
+startsWith
+substring
+trimEnd
+trimStart
+valueOf</p>
+<h3 id="regexp-objects">RegExp Objects</h3>
+<p><code>/a|ab/.exec(&quot;abc&quot;)</code><br>&quot;a&quot;</p>
+<h2 id="indexed-collections">Indexed Collections</h2>
+<p>Set</p>
+<h3 id="array">Array</h3>
+<p>Array.of(...items)</p>
+<p>prototypes:</p>
+<p>filter
+find
+findIndex
+flat(depth)
+forEach
+indexOf
+join
+keys
+lastIndexOf
+map
+pop
+push
+reduce
+reduceRight
+reverse
+shift
+splice
+sort
+unshift</p>
+<h3 id="map">Map</h3>
+<p>Map(iterable$_{opt}$)</p>
+<p>prototypes:</p>
+<p>clear
+delete
+forEach
+get
+has
+set
+keys</p>
+<h2 id="structured-data">Structured Data</h2>
+<p>ArrayBuffer</p>
+<p>DataView</p>
+<p>Atomics</p>
+<h3 id="json">JSON</h3>
+<p>parse
+stringify</p>
+<h2 id="managing-memory">Managing Memory</h2>
+<h2 id="control-abstraction">Control Abstraction</h2>
+<p>iteration</p>
+<p>Promise</p>
+<p>A Promise is an object that is used as a placeholder for the eventual result of a deferred (and
+possibly asynchronous) computation.</p>
+<p>fulfilled, rejected, pending</p>
+<p>settled: not pending (either fulfilled or rejected)</p>
+<p>GeneratorFunction</p>
+<p>AsyncFunction</p>
+<h3 id="genereator">Genereator</h3>
+<p>prototypes:</p>
+<p>next
+return
+throw</p>
+<h2 id="reflection">Reflection</h2>
+<p>Reflect</p>
+<p>Proxy</p>
+<h2 id="memory-model">Memory Model</h2>
+<p>The memory model is defined as relational constraints on events introduced by abstract operations on
+SharedArrayBuffer or by methods on the Atomics object during an evaluaition.</p>
+<p>An execution &#39;execution&#39; is data race free if there are no two events in SharedDataBlockEventSet(execution) that are in a data race.</p>
+<p>A program is data race free if all its executions are data race free.</p>
+<h2 id="browser">Browser</h2>
+<p>CreateHTML(string, tag, attribute, value)</p>
+<h3 id="string-1">String</h3>
+<p>prototypes</p>
+<p>substr(start,length)
+anchor(name)
+big
+blink
+bold
+fixed
+fontcolor
+fontsize
+italics
+link
+small
+strike
+sub
+sup
+trimStart
+trimEnd</p>
+<h3 id="date">Date</h3>
+<p>prototypes:</p>
+<p>getYear
+setYear
+toUTCString</p>
+<h3 id="regexp">RegExp</h3>
+<p>prototypes:</p>
+<p>compile(pattern, flags)</p>
 <h2 id="typescript">typescript</h2>
 <p><code>never</code> is a type of values that never occur. There are no possible values of type never, not even null or undefined.</p>
 

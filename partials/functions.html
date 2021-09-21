@@ -17,8 +17,19 @@
 
         document.getElementById('center').innerHTML = pageContent;
 
+var mycenter = document.getElementById("center")
+    renderMathInElement(mycenter, {
+      delimiters: [
+        {
+          left: '$',
+          right: '$',
+          display: false,
+        },
+      ],
+    });
+
         var container = document.getElementById('center');
-        var elements = container.querySelectorAll('h1, h2, h3, p, pre');
+        var elements = container.querySelectorAll('h1, h2, h3, h4, p, pre, code');
 
         var bottom = container.getBoundingClientRect().bottom;
 /*
@@ -53,11 +64,9 @@
         let pageBuffer = document.querySelector(".buffer-page")
         let bottom2 = pageBuffer.getBoundingClientRect().y
 
-
-
-        for (let h = 0; h < 5; h++) {
+        for (let h = 0; h < 100; h++) {
+        console.log("h: " + h)
  
-
 
         if (bottom2 < soffset3 ) {break} 
         for (let i = 0; i < elements.length; i++) {
@@ -88,38 +97,18 @@
         }
 
 
-var mycenter = document.getElementById("center")
-    renderMathInElement(mycenter, {
-      delimiters: [
-        {
-          left: '$$',
-          right: '$$',
-          display: true,
-        },
-        {
-          left: '$',
-          right: '$',
-          display: false,
-        },
-      ],
-    });
 
+     }
 
-
-
-
-
-      }
-
-
-      soffset3 = document.getElementById("center").offsetHeight;
+      soffset3 = document.getElementById("center").clientHeight;
+//      console.log("soffset3: " + soffset3)
 pageBuffer = document.querySelector(".buffer-page")
          bottom2 = pageBuffer.getBoundingClientRect().y
 
          var sheight2 = document.getElementById("center").scrollHeight - document.querySelector(".buffer-page").clientHeight;
 
         var pageNumberTotal2 = +(sheight2 / soffset3).toFixed(0) + 1
-        document.getElementById("pageNumberTotal").innerHTML=`${pageNumberTotal2}`
+        document.getElementById("pageNumberTotal").innerHTML=`${((bottom2 / soffset3)+0.5).toFixed(0)}`
         document.getElementById("pageNumberCounter").innerHTML="1"
 
 

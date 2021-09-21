@@ -3,12 +3,12 @@
   id="topics"
   x-cloak
   x-data="{ open: false }"
-  @mouseleave="open = false"
+  @mouseleave="open = false;"
 >
-  <button id="a-settings" @mouseover="open = true" @click="open = ! open; $store.selection = 'start'; myfetch('/html/topics/start.html');">start</button>
+  <button id="a-settings" x-text="sel.replace(/.*\//,'').replace(/-C$/,'')" @mouseover="open = true" @click="open = ! open; sel = $store.selection; myfetch('/html/topics/start.html');"></button>
   <div x-show="open">
-    <button id="menu-web" @click="open = false; $store.selection = 'web'; myfetch('/html/topics/web.html');">web</button>
-    <button class="button-folder" id="menu-progr" @click="open = false; $store.selection = 'progr'; myfetch('/html/topics/progr.html');">progr</button>
+    <button id="menu-web" @click="open = false; $store.selection = 'topics/web'; sel = $store.selection; myfetch('/html/topics/web.html');">web</button>
+    <button class="button-folder" id="menu-progr" @click="open = false; $store.selection = 'topics/progr'; myfetch('/html/topics/progr.html');">progr</button>
   </div>
 </div>
 
@@ -34,14 +34,8 @@
   }"
   @mouseleave="open = false"
 >
-  <button id="b-settings" @mouseover="open = true" @click="setNormal();">normal</button>
+  <button id="b-settings" @mouseover="open = true" @click="setNormal();"></button>
   <div x-show="open">
     <button id="settings-left" @click="left = ! left; setLeft(left);">left</button>
   </div>
 </div>
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.store(
-        'selection', "start")
-    })
-</script>

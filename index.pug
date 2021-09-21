@@ -3,7 +3,7 @@ html(lang="en")
  head
   meta(charset="utf-8")
   | {{> head }}
- body
+ body( x-data="{ sel: $persist($store.selection).using(sessionStorage)}" @keyup.space="$store.moveUp.move()")
   | {{> functions }}
   #svgcontainer2
    | {{> line }}
@@ -27,7 +27,6 @@ html(lang="en")
      button#button-up up
   | {{> after }}
   script(type="module" src="./index.js")
-  script(src="./alpine.js" defer)
 
 
 
