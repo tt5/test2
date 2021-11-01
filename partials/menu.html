@@ -1,21 +1,14 @@
-
-<div
-  id="topics"
-  x-cloak
-  x-data="{ open: false }"
-  @mouseleave="open = false;"
->
-  <button id="a-settings" x-text="sel.replace(/.*\//,'').replace(/-C$/,'')" @mouseover="open = true" @click="open = ! open; sel = $store.selection; myfetch('/html/topics/start.html');"></button>
-  <div x-show="open">
-    <button id="menu-web" @click="open = false; $store.selection = 'topics/web'; sel = $store.selection; myfetch('/html/topics/web.html');">web</button>
-    <button class="button-folder" id="menu-progr" @click="open = false; $store.selection = 'topics/progr'; myfetch('/html/topics/progr.html');">progr</button>
-  </div>
+<div id="topics" x-cloak x-data="{ open: false }" @mouseleave="open = false;">
+    <button id="a-settings" x-text="sel.replace(/.*\//,'').replace(/-C$/,'')" @mouseover="open = true"
+        @click="open = ! open; sel = $store.selection; myfetch('/html/topics/start.html');"></button>
+    <div x-show="open">
+        <button id="menu-web" @click="open = false; $store.selection = 'topics/web'; sel = $store.selection; myfetch('/html/topics/web.html');">web</button>
+        <button class="button-folder" id="menu-progr" @click="open = false; $store.selection = 'topics/progr'; myfetch('/html/topics/progr.html');">progr</button>
+        <button class="button-folder" id="menu-math" @click="open = false; $store.selection = 'topics/progr'; myfetch('/html/topics/math.html');">math</button>
+    </div>
 </div>
 
-<div
-  x-cloak
-  id="settings"
-  x-data="{ open: false,
+<div x-cloak id="settings" x-data="{ open: false,
     left: false,
     setLeft: (a) => {
 
@@ -31,11 +24,9 @@
       document.getElementById('center').classList.remove('settings-left')
       myfetch(`/html/topics/${$store.selection}.html`)
     }
-  }"
-  @mouseleave="open = false"
->
-  <button id="b-settings" @mouseover="open = true" @click="setNormal();"></button>
-  <div x-show="open">
-    <button id="settings-left" @click="left = ! left; setLeft(left);">left</button>
-  </div>
+  }" @mouseleave="open = false">
+    <button id="b-settings" @mouseover="open = true" @click="setNormal();"></button>
+    <div x-show="open">
+        <button id="settings-left" @click="left = ! left; setLeft(left);">left</button>
+    </div>
 </div>
