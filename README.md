@@ -8,6 +8,7 @@ m4 def.m4 -F defm4
 
 # bundle
 
+```bash
 npx vite build
 cp katex.js dist/
 cp auto-render.js dist/
@@ -20,3 +21,4 @@ mkdir partials
 cp ../partials/start-C.html partials/
 
 npx vite preview
+```

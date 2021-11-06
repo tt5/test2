@@ -3,9 +3,9 @@
 
 
 
-  <script type="module" crossorigin src="/assets/index.da0bf89f.js"></script>
+  <script type="module" crossorigin src="/assets/index.008577e8.js"></script>
     <link rel="modulepreload" href="/assets/vendor.8fac99b9.js">
-    <link rel="stylesheet" href="/assets/index.6ae9e9ab.css">
+    <link rel="stylesheet" href="/assets/index.c3b07320.css">
   </head><body x-data="{ sel: $persist($store.selection).using(sessionStorage)}" @keyup.space="$store.moveUp.move()"><script>
   function myfetch(file) {
     fetch(file)
@@ -126,24 +126,17 @@ pageBuffer = document.querySelector(".buffer-page")
 <div id="svgcontainer2"><div id="line-over"></div>
 <div id="svgcontainer"></div>
 <div id="line-under"></div>
-</div><div id="grid"><div id="title"><div id="title-content"></div></div><div id="top">
-<div
-  id="topics"
-  x-cloak
-  x-data="{ open: false }"
-  @mouseleave="open = false;"
->
-  <button id="a-settings" x-text="sel.replace(/.*\//,'').replace(/-C$/,'')" @mouseover="open = true" @click="open = ! open; sel = $store.selection; myfetch('/html/topics/start.html');"></button>
-  <div x-show="open">
-    <button id="menu-web" @click="open = false; $store.selection = 'topics/web'; sel = $store.selection; myfetch('/html/topics/web.html');">web</button>
-    <button class="button-folder" id="menu-progr" @click="open = false; $store.selection = 'topics/progr'; myfetch('/html/topics/progr.html');">progr</button>
-  </div>
+</div><div id="grid"><div id="title"><div id="title-content"></div></div><div id="top"><div id="topics" x-cloak x-data="{ open: false }" @mouseleave="open = false;">
+    <button id="a-settings" x-text="sel.replace(/.*\//,'').replace(/-C$/,'')" @mouseover="open = true"
+        @click="open = ! open; sel = $store.selection; myfetch('/html/topics/start.html');"></button>
+    <div x-show="open">
+        <button id="menu-web" @click="open = false; $store.selection = 'topics/web'; sel = $store.selection; myfetch('/html/topics/web.html');">web</button>
+        <button class="button-folder" id="menu-progr" @click="open = false; $store.selection = 'topics/progr'; myfetch('/html/topics/progr.html');">progr</button>
+        <button class="button-folder" id="menu-math" @click="open = false; $store.selection = 'topics/progr'; myfetch('/html/topics/math.html');">math</button>
+    </div>
 </div>
 
-<div
-  x-cloak
-  id="settings"
-  x-data="{ open: false,
+<div x-cloak id="settings" x-data="{ open: false,
     left: false,
     setLeft: (a) => {
 
@@ -159,13 +152,11 @@ pageBuffer = document.querySelector(".buffer-page")
       document.getElementById('center').classList.remove('settings-left')
       myfetch(`/html/topics/${$store.selection}.html`)
     }
-  }"
-  @mouseleave="open = false"
->
-  <button id="b-settings" @mouseover="open = true" @click="setNormal();"></button>
-  <div x-show="open">
-    <button id="settings-left" @click="left = ! left; setLeft(left);">left</button>
-  </div>
+  }" @mouseleave="open = false">
+    <button id="b-settings" @mouseover="open = true" @click="setNormal();"></button>
+    <div x-show="open">
+        <button id="settings-left" @click="left = ! left; setLeft(left);">left</button>
+    </div>
 </div>
 </div><div id="border-left"></div><div id="center"><div class="page-content">
   <div x-init="myfetch(`/html/${sel}.html`);"></div>

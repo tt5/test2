@@ -1,0 +1,219 @@
+<div class="page-content">
+<h1 id="c">C</h1>
+<blockquote>
+</blockquote>
+<p>A <strong>C Program</strong> is a sequence of text files that contain <em>declarations</em>. They
+undergo translation to become an executable program, which is executed when the
+OS calls its <strong>main function</strong> (unless it is itself the OS or another
+freestanding program, in which case the entry point is implementation-defined.)
+<em>These declarations declare functions and objects</em> with external linkage.
+They are known as <strong>external declarations</strong> because they appear outside of any
+function.</p>
+<p>preprocessing translation unit:<br>A source file together with all the headers
+and source files included via <code>#include</code>.</p>
+<p><strong>translation unit</strong><br>Preprocessing translation unit after preprocessing.
+<em>One or more external declaration.</em>
+Translation units may be separately translated and then later linked to
+produce an executable program.</p>
+<p>A declaration that also causes storage to be reserved for an object or a function named
+by the identifier is a <strong>definition</strong>.</p>
+<p>declaration: file.h, definition: file.c.</p>
+<p><strong>function prototype</strong><br><em>Declaration of a function</em> that declares the types of
+its parameters.</p>
+<p>The ellipsis notation in a function prototype declarator causes argument type
+conversion to stop after the last declared parameter. The default argument
+promotions are performed on trailing arguments.</p>
+<p>A <strong>definition</strong> of an identifier is a declaration for that identifier that:<br>— for an object, causes storage to be reserved for that object;<br>— for a function, includes the function body;<br>— for an enumeration constant, is the (only) declaration of the identifier;<br>— for a typedef name, is the first (or only) declaration of the identifier.  </p>
+<p>If the declaration of an identifier for an object has file scope and an
+initializer, the declaration is an <strong>external definition</strong> for the identifier.</p>
+<p><strong>function definition</strong><br>declspec declor [ declaration ]? compoundstat</p>
+<p>The <strong>declaration specifiers</strong> consist of a sequence of specifiers that indicate
+the linkage, storage duration, and part of the type of the entities that the
+declarators denote. The init-declarator-list is a comma-separated sequence of
+declarators, each of which may have additional type information, or an
+initializer, or both. The declarators contain the identifiers (if any) being
+declared.</p>
+<p><strong>declarator</strong><br>Name of the function and the identifiers of its parameters.  A declarator with
+a parametertypelist serves as a function prototype for later calls to the same
+function in the same translation unit.  Each declarator declares one
+identifier, and asserts that when an operand of the same form as the declarator
+appears in an expression, it designates a function or object with the scope,
+storage duration, and type indicated by the declaration specifiers.  A <strong>full
+declarator</strong> is a declarator that is not part of another declarator.  A
+declarator in parentheses is identical to the unparenthesized declarator, but
+the binding of complicated declarators may be altered by parentheses.</p>
+<p><strong>abstract declarator</strong><br>Cast or argument to <code>size-of</code>.</p>
+<p>A <strong>punctuator</strong> is a symbol that has independent syntactic and semantic
+significance.  Depending on context, it may specify an operation to be
+performed (which in turn may yield a value or a function designator, produce a
+side effect, or some combination thereof) in which case it is known as an
+operator (other forms of operator also exist in some contexts).</p>
+<p><strong>object-like macro</strong><br><code>#define</code> identifier replacementlist newline</p>
+<p><strong>function-like macro</strong><br><code>#define</code> identifier lparen [ idlist$_{opt}$ OR <code>...</code> OR idlist <code>,  ...</code> ] <code>)</code> replacementlist newline</p>
+<p><strong>preprocessingfile</strong><br>[ if-section OR control-line OR test-line OR <code>#</code> non-directive ]<code>*</code></p>
+<p><strong>storageclassspecifiers</strong><br>[ extra OR static ]?</p>
+<p>A <em>function declaration</em> can contain the storage class specifier <code>static</code> only if
+it is at file scope</p>
+<p>A <strong>generic selection</strong> is a primary expr:<br><code>_Generic</code> <code>(</code> conrolling-expr <code>,</code> [ generic-association <code>,</code> ]<del>nopt</del> generic-association <code>)</code></p>
+<p><strong>generic-association</strong> &nbsp;&nbsp;&nbsp;&nbsp; <em>def</em><br>type-name <code>:</code> aexpr<br>default <code>:</code> aexpr</p>
+<p><strong>controlling-expr</strong><br>any expression (except for the comma operator) whose type must be compatible
+with one of the type-names if the default association is not used</p>
+<p><strong>type-name</strong><br>complete object type other than a variably modified type.</p>
+<p><strong>argument</strong><br>expression in the comma-separated list
+bounded by the parantheses in a function call expression,
+or a sequence of preprocessing tokens in the comma-separated
+list bounded by parantheses in a function-like macro invocation.</p>
+<p>A postfix expression followed by parentheses <code>()</code> containing a possibly empty, comma-
+separated list of expressions is a <strong>function call</strong>.</p>
+<p><strong>parameter</strong><br>object declared as part of a function declaration
+or definition that acquires a value on entry
+to the function, or an identifier from the comma-separated
+list bounded by the parantheses immediately following the macro
+name in a function-like macro definition.</p>
+<p><strong>type qualifier</strong><br><code>const</code> &nbsp;&nbsp;&nbsp;&nbsp;
+<code>restrict</code> &nbsp;&nbsp;&nbsp;&nbsp;
+<code>volatile</code> &nbsp;&nbsp;&nbsp;&nbsp;
+<code>_Atomic</code> &nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p><strong>function specifiers</strong><br><code>inline</code> &nbsp;&nbsp;&nbsp;&nbsp;
+<code>_Noreturn</code> &nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p><strong>storage class specifier</strong><br><code>typedef</code> &nbsp;&nbsp;&nbsp;&nbsp;
+<code>extern</code> &nbsp;&nbsp;&nbsp;&nbsp;
+<code>static</code> &nbsp;&nbsp;&nbsp;&nbsp;
+<code>_Thread_local</code> &nbsp;&nbsp;&nbsp;&nbsp;
+<code>auto</code> &nbsp;&nbsp;&nbsp;&nbsp;
+<code>register</code> &nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p><strong>storage duration</strong><br>Static,
+thread,
+automatic,
+allocated.</p>
+<p><strong>extended character set</strong> &nbsp;&nbsp;&nbsp;&nbsp; <em>def</em><br>basic character set<br>extended characters (nopt)</p>
+<p><strong>basic execution character set</strong> &nbsp;&nbsp;&nbsp;&nbsp; <em>def</em><br>basic character set<br>alert<br>backspace<br>CR<br>NL<br>NULL  </p>
+<p><strong>statement</strong> &nbsp;&nbsp;&nbsp;&nbsp; <em>def</em><br>block<br>exprstat<br>selectionstat<br>jumpstat<br>iterationstat  </p>
+<p><strong>block (compound stat)</strong> &nbsp;&nbsp;&nbsp;&nbsp; <em>def</em><br><code>{</code> <em>[</em> decl <em>or</em> stat <em>]</em>* <code>}</code></p>
+<p><strong>iterationstat</strong>\q <em>def</em><br>\ttfamily
+while ( expr ) stat\
+do stat while ( expr ) ;\
+for ( [ expr? ; or decl ] expr? ; expr? ) stat
+\normalfont</p>
+<p><strong>typename</strong><br>(name of a type) \textit{def}\
+spqul abstrdeclarator_opt</p>
+<p>In several contexts, it is necessary to specify a type. This is accomplished
+using a <em>type name</em>, which is syntactically a declaration for a function or
+an object of that type that omits the identifier.</p>
+<p><strong>ifgr</strong> &nbsp;&nbsp;&nbsp;&nbsp; <em>def</em><br><code>#</code>[<br><code>if</code> cexpr<br><code>ifdef</code> id<br><code>ifndef</code> id<br>] nl [grp]$_{nopt}$  </p>
+
+<div class="buffer-page">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+</div>

@@ -1,9 +1,9 @@
 <div class="page-content">
 <h1 id="regex">regex</h1>
 <h2 id="regexp">regexp</h2>
-<p><em>(</em> atom quantifier$^?$ <em>)</em> &#x002a;<br><em>(</em> <strong><code>|</code></strong> <em>(</em> atom quantifier$^?$ <em>)</em> &#x002a; <em>)</em> &#x002a;</p>
+<p><em>(</em> atom quantifier$^?$ <em>)</em> *<br><em>(</em> <strong><code>|</code></strong> <em>(</em> atom quantifier$^?$ <em>)</em> * <em>)</em> *</p>
 <h2 id="atom">atom</h2>
-<p>░░ &nbsp;&nbsp;&nbsp;&nbsp; <strong><code>(</code></strong> regexp <strong><code>)</code></strong><br>░░ &nbsp;&nbsp;&nbsp;&nbsp; <em>any character exept</em> &nbsp;&nbsp;&nbsp;&nbsp; <code>. \ ? &#x002a; + { } ( ) | [ ]</code><br>░░ &nbsp;&nbsp;&nbsp;&nbsp; <strong><code>.</code></strong> &nbsp;&nbsp;&nbsp;&nbsp; (<em>this means</em> <code>[^\n\r]</code>)<br>░░ &nbsp;&nbsp;&nbsp;&nbsp; <strong><code>\</code></strong> <em>one of</em> &nbsp;&nbsp;&nbsp;&nbsp; <code>n r t . \ ? &#x002a; + { } ( ) | [ ] _ ^</code><br>░░ &nbsp;&nbsp;&nbsp;&nbsp; <strong><code>\P</code></strong> <em>or</em> <strong><code>\p</code></strong> <strong><code>{</code></strong> more1 <strong><code>}</code></strong><br>░░ &nbsp;&nbsp;&nbsp;&nbsp; <strong><code>\</code></strong> <em>one of</em> &nbsp;&nbsp;&nbsp;&nbsp; <code>s S i I c C d D w W a A</code><br>░░ &nbsp;&nbsp;&nbsp;&nbsp; charClassExpr  </p>
+<p>░░ &nbsp;&nbsp;&nbsp;&nbsp; <strong><code>(</code></strong> regexp <strong><code>)</code></strong><br>░░ &nbsp;&nbsp;&nbsp;&nbsp; <em>any character exept</em> &nbsp;&nbsp;&nbsp;&nbsp; <code>. \ ? * + { } ( ) | [ ]</code><br>░░ &nbsp;&nbsp;&nbsp;&nbsp; <strong><code>.</code></strong> &nbsp;&nbsp;&nbsp;&nbsp; (<em>this means</em> <code>[^\n\r]</code>)<br>░░ &nbsp;&nbsp;&nbsp;&nbsp; <strong><code>\</code></strong> <em>one of</em> &nbsp;&nbsp;&nbsp;&nbsp; <code>n r t . \ ? * + { } ( ) | [ ] _ ^</code><br>░░ &nbsp;&nbsp;&nbsp;&nbsp; <strong><code>\P</code></strong> <em>or</em> <strong><code>\p</code></strong> <strong><code>{</code></strong> more1 <strong><code>}</code></strong><br>░░ &nbsp;&nbsp;&nbsp;&nbsp; <strong><code>\</code></strong> <em>one of</em> &nbsp;&nbsp;&nbsp;&nbsp; <code>s S i I c C d D w W a A</code><br>░░ &nbsp;&nbsp;&nbsp;&nbsp; charClassExpr  </p>
 <h3 id="more1">more1</h3>
 <p><code>L</code> <em>opt one of</em> &nbsp;&nbsp;&nbsp;&nbsp; <code>u l t m o</code>  </p>
 <p><code>M</code> <em>opt one of</em> &nbsp;&nbsp;&nbsp;&nbsp; <code>n c l</code>  </p>
@@ -18,9 +18,11 @@
 <h3 id="character-class-substr">character-class-substr</h3>
 <p><code>[</code> <code>-</code> charClassExpr <code>]</code></p>
 <h3 id="something">something</h3>
-<p>every character exept <code>\ [ ]</code><br><code>\</code> one of <em>[</em> <code>n r t . \ ? &#x002a; + { } ( ) | [ ] _ ^</code> <em>]</em></p>
+<p>every character exept <code>\ [ ]</code><br><code>\</code> one of <em>[</em> <code>n r t . \ ? * + { } ( ) | [ ] _ ^</code> <em>]</em></p>
 <h3 id="chargrouppart">charGroupPart</h3>
 <p>something<br>something <code>-</code> something<br><code>\P</code> <em>or</em> <code>\p {</code> more1 <code>}</code><br><code>\</code> one of &nbsp;&nbsp;&nbsp;&nbsp; [ <code>s S i I c C d D w W a A</code> ]  </p>
+<h2 id="sed">sed</h2>
+<p>three digits: <code>[[:digit:]]\{3\}</code></p>
 
 <div class="buffer-page">
   <br>

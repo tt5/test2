@@ -1,0 +1,229 @@
+<div class="page-content">
+<h1 id="bash">Bash</h1>
+<h2 id="---">---</h2>
+<p><code>bash --norc</code></p>
+<p><code>echo -e &#39;\u</code><em>hhhh</em><code>\u</code><em>hhhhhhhh</em><code>&#39;</code></p>
+<pre><code class="language-bash">set
+declare -p
+</code></pre>
+<p><code>for ((</code> <em>expr</em><code>;</code> <em>expr</em><code>;</code> <em>expr</em> <code>)); do</code> <em>cmd</em> <code>done</code></p>
+<pre><code class="language-bash">for x in *.JPG
+do mv &quot;$x&quot; &quot;${x%.*}.jpg&quot;
+done
+
+for i in {1..5}; do echo $i; done
+</code></pre>
+<p><code>${a=1}</code>\quad define, if not defined<br><code>${a-1}</code>\quad print &#39;1&#39; if a is not defined  </p>
+<pre><code class="language-bash">declare -A myar=([two]=&quot;2&quot; [one]=&quot;1&quot; )
+myar+=([more]=3)
+myar[${\#myar[*]}]=&quot;koko&quot;
+echo ${!array[@]}
+echo ${array[@]:3:2}
+echo ${#array[@]}
+
+for x in &quot;${!arr[@]}&quot;
+do printf &quot;${x@Q} = ${arr[$x]@Q}\n&quot;
+done
+</code></pre>
+<p>diff -u &lt;(ps) &lt;(ps -e)</p>
+<h1 id="script">Script</h1>
+<p><code>set -eu</code><br>The <code>set -e</code> option instructs bash to immediately exit if
+any command has a non-zero exit status.</p>
+<p>To use aliases in scripts, you need to add:<br><code>shopt -s expand_aliases</code><br><code>source ~/.bashrc</code></p>
+<h1 id="readline">Readline</h1>
+<p>c-b<br>c-f<br>c-s<br>c-a\q (start of line)<br>c-e\q (end of line)  </p>
+<p>rlwrap</p>
+<p>$\fbox{C-t}$ &nbsp;&nbsp;&nbsp;&nbsp; exchange chars  </p>
+<p>$\fbox{M-t}$ exchange words  </p>
+<p>$\fbox{M-u}$ Wort uppercase  </p>
+<p>$\fbox{M-l}$ or $\fbox{M-f}$ one word fw  </p>
+<p>$\fbox{M-b}$ one word bw  </p>
+<p>$\fbox{M-d}$ delete rest of word  </p>
+<p>$\fbox{M-C-h}$ or $\fbox{C-w}$ delete word bw  </p>
+<p>$\fbox{C-M-y}$ first argument  </p>
+<p>$\fbox{C-r}$ and $\fbox{C-s}$ search history  </p>
+<p>$\fbox{M-(numarg)}$  </p>
+<p>$\fbox{M-.}$ last argument of previous line  </p>
+<p>$\fbox{C-x,( ... C-x,) C-x,e}$ record and execute macro  </p>
+<p>$\fbox{C-]}$ move to character  </p>
+<p>$\fbox{M-C-]}$ move to character bw  </p>
+<p>$\fbox{C-_}$ undo</p>
+<h1 id="builtin">builtin</h1>
+<pre><code class="language-bash">alias
+bind
+fg
+bg
+fc
+declare
+cd
+</code></pre>
+<p><code>printf &#39;%d\n&#39; {1..10}</code>  </p>
+<pre><code class="language-bash">printf \
+&quot;\x1b[38;2;255;100;0mTest\x1b[0m\n&quot;
+
+printf \
+&quot;\x1b[38;2;255;100;0mTest\
+huhu
+\x1b[48;2;22;255;22m\
+hoi
+Hallo\x1b[0m\n&quot;
+</code></pre>
+<p><code>trap</code>\quad capture an interrupt (signal) and then clean it up within the script</p>
+<h2 id="jobs">jobs</h2>
+<p>A job is suspended when its process group leader
+receives one of the signals
+\texttt{SIGSTOP SIGTSTP SIGTTIN SIGTTOU}.</p>
+<pre><code class="language-bash">%n
+%str
+%?str
+%% or %+
+%-
+</code></pre>
+<p><code>%1</code> $≡$ <code>fg %1</code><br><code>%1 &amp;</code> $≡$ <code>bg %1</code>  </p>
+<h2 id="regex-ere">Regex (ERE)</h2>
+<p><code>var = &#39;</code><em>regex</em><code>&#39;</code><br><code>[[ </code><em>str</em> <code>=~ $var ]]</code> </p>
+<h2 id="----1">---</h2>
+<p><code>${</code> <em>var</em> <code>:</code> <em>offset</em> <code>:</code> <em>length</em> <code>}</code>\quad substring expansion<br><code>${#</code> <em>var</em> <code>}</code>\quad length<br><code>${</code> <em>var</em> <code>#</code> <em>patt</em> <code>}</code><br><code>${</code> <em>var</em> <code>##</code> <em>patt</em> <code>}</code><br><code>${</code> <em>var</em> <code>##*.}</code>\quad =&gt; &quot;c&quot; (extension)<br><code>${</code> <em>var</em> <code>##*/}</code>\quad =&gt; &quot;foo.c&quot; (basepath)<br><code>${</code> <em>var</em> <code>%</code> <em>patt</em> <code>}</code><br><code>${</code> <em>var</em> <code>%%</code> <em>patt</em> <code>}</code><br><code>${</code> <em>var</em> <code>/</code> <em>patt</em> <code>/</code> <em>str</em> <code>}</code>\quad replace first match<br><code>${</code> <em>var</em> <code>//</code> <em>patt</em> <code>}</code>\quad replace all matches<br><code>${</code> <em>var</em> <code>/</code> <em>patt</em> <code>}</code><br><code>?(</code> <em>list</em> <code>)</code>\quad matches zero or one occurrences of the given pattern<br><code>*(</code> <em>list</em> <code>)</code>\quad matches zero or more<br><code>+(</code> <em>list</em> <code>)</code>\quad matches one or more<br><code>@(</code> <em>list</em> <code>)</code>\quad matches one of the given patterns<br><code>!(</code> <em>list</em> <code>)</code>\quad matches anything except one of the given pattern  </p>
+<pre><code class="language-bash">str=aab
+${str/%ab}
+</code></pre>
+<p>=&gt; a</p>
+<h1 id="history">history</h1>
+<pre><code class="language-bash">![!,[-][N[^*$],^*$]
+!:N !N:N
+!string
+!?string?
+history | ag some
+:p :h :t :r :e :q
+!!:gs/some/some/
+!!:s/some/some/
+</code></pre>
+<p>!<em>cmd</em>\quad runs the command with the same arguments that were used last time
+with that command</p>
+<h1 id="----2">---</h1>
+<p><code>find . -name &quot;*jpeg&quot; | parallel -I% --max-args 1 convert % %.png</code></p>
+<p>--max-args 1 limits the rate at which Parallel requests a new object from the
+queue. Since the command Parallel is running requires only one file, you limit
+the rate to 1. Were you doing a more complex command that required two files
+(such as cat 001.txt 002.txt &gt; new.txt), you would limit the rate to 2.</p>
+<p>-I% creates a placeholder, called %, to stand in for whatever find hands over
+to Parallel.</p>
+<p>convert % %.png is the command you want to run in Parallel.
+▐<br><code>ls -1 | parallel --max-args=2 cat {1} {2} &quot;&gt;&quot; {1}_{2}.person</code></p>
+<p><code>find /path/to/dir -name &quot;searchterm&quot;</code></p>
+
+<div class="buffer-page">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+</div>

@@ -1,0 +1,222 @@
+<div class="page-content">
+<h1 id="json">JSON</h1>
+<blockquote>
+</blockquote>
+<p><em>[</em> object <em>or</em> array <em>]</em>$^+$</p>
+<p>object:<br><strong>{</strong> <em>[</em> string : value <em>[</em> , string : value <em>]</em>$^{ * }$ <em>]</em>$^?$ <strong>}</strong></p>
+<p>array:<br><strong>[</strong> <em>[</em> value <em>[</em>, value <em>]</em> \star <em>]</em>$^?$ <strong>]</strong></p>
+<p>value:<br>•<br>string<br>number<br><strong>true</strong><br><strong>false</strong><br><strong>null</strong></p>
+<p>number:<br>int <em>[</em> . <em>[</em> 0 <em>to</em> 9 <em>]</em>$^?$
+<em>[</em> <em>[</em> e <em>or</em> E <em>]</em> <em>[</em> + <em>or</em> - <em>]</em>$^?$
+<em>[</em> 0 <em>to</em> 9 <em>]</em>+ <em>]</em>$^?$</p>
+<p>int:<br><em>[</em> - <em>]</em>$^?$ \textit{[} 0 <em>or</em> \textit{[}
+\textit{[} 1 <em>to</em> 9 \textit{]} \textit{[} 0 <em>to</em> 9 \textit{]} * \textit{]} \textit{]}</p>
+<p>macro1
+string:<br><strong>&quot;</strong> \textit{[} char \textit{]} * <strong>&quot;</strong></p>
+<p>char:<br><em>any Unicode character except</em> &quot; <em>or</em> \ <em>or</em> control-character</p>
+<p>control-character:<br>\ \textit{[} <em>one of</em> &quot; \ / b f n r t u<em>four-hex-digits</em> \textit{]}</p>
+<h1 id="jshon">jshon</h1>
+<p><a href="https://github.com/keenerd/jshon">https://github.com/keenerd/jshon</a></p>
+<p><code>jshon [</code>actions<code>]</code></p>
+<p><code>-u</code>\quad unescape string<br><code>-t</code>\quad id type (str, object, list, number, bool, null)<br><code>-l</code>\quad length<br><code>-k</code>\quad keys (object)  </p>
+<p><code>-e</code> <em>index</em>\quad extract (object, array).<br><code>-i</code> <em>index</em> insert, opposite of extract, merges json up
+the stack. objects will overwrite, arrays will insert. Arrays
+can take negative numbers or &#39;append&#39;<br><code>-d</code> <em>index</em>\quad remove an element from an objet or array. Negative array indexes will wrap around.<br><code>-a</code>\quad (across) maps the remaining actions across the selected element. Only
+works on objects and arrays. Multiple -a calls can be nested, though the need
+is rare in practice.<br><code>-s</code> <em>value</em>\quad load string (adds json escapes)<br><code>-n</code> <em>value</em>\quad load nonstring (<code>t f n [] {}</code>)<br><code>-p</code>\quad pop stack / undo last manipulation<br><code>-j</code>\q json literal (preserves json escapes, display value)</p>
+<p><code>-F</code> <em>file</em><br><code>-I</code>\quad in-place file editing (requires -F)<br><code>-S</code>\quad sort keys when writing objects<br><code>-Q</code>\quad quiet<br><code>-C</code>\quad continue through errors<br><code>-P</code>\q detect and ignore JSONP wrapper, if present
+<code>-0</code>\q null delimiters</p>
+<p>Use <em>extract</em> (<code>-e</code>) to dive into json tree, <em>delete</em> (<code>-d</code>,)
+<em>string</em> (<code>-s</code>), <em>nonstring</em> (<code>-n</code>) to change things, and
+<em>insert</em> (<code>-i</code>) to push the changes back up the tree.</p>
+<pre><code>{
+ &quot;a&quot;: 1,
+ &quot;b&quot;: [
+  true,
+  false,
+  null,
+  &quot;none&quot;
+ ],
+ &quot;c&quot;: {
+  &quot;d&quot;: 4,
+  &quot;e&quot;: 5
+ }
+}
+</code></pre>
+<p>Most common read-only uses will only need several <code>-e</code> actions and one <code>-a</code>
+in the middle of them.</p>
+<p><code>jshon -e &quot;c&quot; -e &quot;d&quot;</code></p>
+<pre><code class="language-json">4
+</code></pre>
+<p><code>jshon -e &quot;c&quot; -e &quot;d&quot; -i &quot;f&quot; -d &quot;d&quot;</code></p>
+<pre><code class="language-json">{
+ &quot;e&quot;: 5,
+ &quot;f&quot;: &quot;d&quot;
+}
+</code></pre>
+<p><code>jshon -e &quot;c&quot; -n 1 -i &quot;f&quot; -d &quot;d&quot;</code></p>
+<pre><code>{
+ &quot;e&quot;: 5,
+ &quot;f&quot;: 1
+}
+</code></pre>
+<p><code>jshon -e &quot;c&quot; -n 1 -i &quot;f&quot; -d &quot;d&quot; -i &quot;c&quot;</code></p>
+<pre><code>{
+ &quot;a&quot;: 1,
+ &quot;b&quot;: [
+  true,
+  false,
+  null,
+  &quot;none&quot;
+ ],
+ &quot;c&quot;: {
+  &quot;e&quot;: 5,
+  &quot;f&quot;: 1
+ }
+}
+</code></pre>
+<p><code>jshon -e b -d 0 -s foo -i 0</code></p>
+<pre><code>[
+ &quot;foo&quot;,
+ false,
+ null,
+ &quot;none&quot;
+]
+</code></pre>
+<p><code>jshon -e b -a -t</code></p>
+<pre><code>bool
+bool
+null
+string
+</code></pre>
+<p><code>jshon -e c -e d -u -p -e e -u</code>
+== <code>jshon -ec -ed -upee -u</code></p>
+<p><code>jshon -n {} -s one -i vara</code></p>
+<pre><code>{
+ &quot;vara&quot;: &quot;one&quot;
+}
+</code></pre>
+<h1 id="jq">jq</h1>
+<blockquote>
+</blockquote>
+<p><code>echo &#39;[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]&#39; | jq &#39;.[1:3]&#39;</code></p>
+<p>[
+  &quot;b&quot;,
+  &quot;c&quot;
+]</p>
+
+<div class="buffer-page">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+</div>
